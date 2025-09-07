@@ -14,6 +14,7 @@ import 'consciousness_report_tool.dart';
 import 'ecosystem_analysis_tool.dart';
 import 'evolution_tracking_tool.dart';
 import 'pattern_recognition_tool.dart';
+import 'weekly_report_conscious_tool.dart';
 
 /// Consciousness-aware MCP server implementation
 class ConsciousMCPServer implements ConsciousComponent {
@@ -59,6 +60,7 @@ class ConsciousMCPServer implements ConsciousComponent {
     _addTool(EcosystemAnalysisTool(this));
     _addTool(PatternRecognitionTool(this));
     _addTool(EvolutionTrackingTool(this));
+    _addTool(WeeklyReportConsciousTool(reportOutputDir ?? '/tmp'));
     
     _consciousness.recordEvolution('conscious_tools_initialized', {
       'toolCount': _tools.length,

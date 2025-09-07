@@ -13,7 +13,7 @@
         "/Users/ajaydahal/v4/the_mcp/src/main.dart"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal",
+        "MCP_READ_PATHS": "/Users/ajaydahal,/Users/ajaydahal/bin",
         "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
         "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
       }
@@ -35,7 +35,7 @@
         "--version", "2.0.0-dev"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp,/Users/ajaydahal/Documents",
+        "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp,/Users/ajaydahal/Documents,/Users/ajaydahal/bin",
         "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp,/Users/ajaydahal/Desktop",
         "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
       }
@@ -57,7 +57,7 @@
         "--version", "2.0.0"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal",
+        "MCP_READ_PATHS": "/Users/ajaydahal,/Users/ajaydahal/bin",
         "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports",
         "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
       }
@@ -79,7 +79,7 @@
           "/Users/ajaydahal/v4/the_mcp/src/main.dart"
         ],
         "env": {
-          "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp",
+          "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp,/Users/ajaydahal/bin",
           "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
           "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
         },

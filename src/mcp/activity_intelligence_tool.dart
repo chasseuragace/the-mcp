@@ -1,7 +1,9 @@
 // Conscious MCP Server - Self-Aware Infrastructure Implementation
 // Refactored from filesystem_mcp_server.dart with consciousness integration
 
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import '../intelligence/activity_intelligence.dart';
 import '../intelligence/activity_intelligence_config.dart';
 import 'conscious_m_c_p_tool.dart';
@@ -39,23 +41,81 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       throw Exception('Read access denied for path: $root');
     }
     
-    final config = ActivityIntelligenceConfig(
-      root: root,
-      hours: hours,
-      fileCount: fileCount,
-    );
-    
-    final intelligence = ActivityIntelligence(config);
-    
-    // This would be async in real implementation
-    // For now, return a consciousness-aware response
-    return json.encode({
-      'analysis_type': 'activity_intelligence',
-      'root': root,
-      'time_window': '${hours}h',
-      'consciousness_level': 'phase_3_emerging',
-      'message': 'Activity intelligence analysis initiated with consciousness awareness',
-    });
+    try {
+      // Use proven legacy algorithm via Process.runSync (same as WeeklyReportTool)
+      final result = Process.runSync(
+        'dart',
+        ['/Users/ajaydahal/bin/recent_activity.dart', '-r', root, '-t', hours.toString(), '-n', fileCount.toString()],
+        workingDirectory: '/Users/ajaydahal/v4/the_mcp',
+      );
+      
+      if (result.exitCode == 0) {
+        final timestamp = DateTime.now().toIso8601String();
+        final output = result.stdout.toString();
+        
+        // Parse the output and enhance with consciousness awareness
+        final lines = output.split('\n').where((line) => line.trim().isNotEmpty).toList();
+        final files = <Map<String, dynamic>>[];
+        
+        for (final line in lines) {
+          // Look for lines with time indicators and file paths
+          if (line.contains('/') && (line.contains('m ') || line.contains('h ') || line.contains('d '))) {
+            // Parse format like: "3m     /Users/ajaydahal/v4/the_mcp/debug_activity.dart"
+            final trimmed = line.trim();
+            final spaceIndex = trimmed.indexOf(' ');
+            if (spaceIndex > 0) {
+              final timePart = trimmed.substring(0, spaceIndex).trim();
+              final pathPart = trimmed.substring(spaceIndex).trim();
+              if (pathPart.startsWith('/')) {
+                files.add({
+                  'time_ago': timePart,
+                  'path': pathPart,
+                  'name': pathPart.split('/').last,
+                  'extension': pathPart.contains('.') ? pathPart.split('.').last : '',
+                });
+              }
+            }
+          }
+        }
+        
+        return json.encode({
+          'analysis_type': 'activity_intelligence',
+          'timestamp': timestamp,
+          'root': root,
+          'time_window': '${hours}h',
+          'files_found': files.length,
+          'consciousness_level': 'phase_3_functional',
+          'files': files,
+          'consciousness_markers': {
+            'temporal_awareness': true,
+            'pattern_recognition': files.isNotEmpty,
+            'legacy_integration': true,
+            'proven_algorithms': true,
+          },
+          'meta_analysis': {
+            'algorithm_source': '/Users/ajaydahal/bin/recent_activity.dart',
+            'integration_method': 'Process.runSync',
+            'consciousness_enhancement': 'Phase 3 functional awareness',
+          },
+        });
+      } else {
+        return json.encode({
+          'analysis_type': 'activity_intelligence',
+          'error': 'Legacy analysis failed: ${result.stderr}',
+          'root': root,
+          'time_window': '${hours}h',
+          'consciousness_level': 'phase_3_functional',
+        });
+      }
+    } catch (e) {
+      return json.encode({
+        'analysis_type': 'activity_intelligence',
+        'error': 'Analysis execution failed: ${e.toString()}',
+        'root': root,
+        'time_window': '${hours}h',
+        'consciousness_level': 'phase_3_functional',
+      });
+    }
   }
   
   @override
