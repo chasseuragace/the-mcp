@@ -1,0 +1,15 @@
+name: the_mcp_conscious
+description: AI-collaborative consciousness amplification infrastructure through secure filesystem access
+version: 2.0.0+consciousness
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  # No external dependencies - pure Dart consciousness
+
+dev_dependencies:
+  lints: ^3.0.0
+
+executables:
+  the-mcp-conscious: main

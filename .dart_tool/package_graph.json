@@ -1,0 +1,21 @@
+{
+  "roots": [
+    "the_mcp_conscious"
+  ],
+  "packages": [
+    {
+      "name": "the_mcp_conscious",
+      "version": "2.0.0+consciousness",
+      "dependencies": [],
+      "devDependencies": [
+        "lints"
+      ]
+    },
+    {
+      "name": "lints",
+      "version": "3.0.0",
+      "dependencies": []
+    }
+  ],
+  "configVersion": 1
+}

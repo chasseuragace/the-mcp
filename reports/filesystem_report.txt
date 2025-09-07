@@ -1,0 +1,12 @@
+Filesystem Report
+Generated: 2025-09-01T12:43:14.174702
+Directory: /Users/ajaydahal/v4/the_mcp
+Total Files: 5
+Total Size: 59521 bytes
+
+Files:
+/Users/ajaydahal/v4/the_mcp/scan_projects.dart (20559 bytes, 2025-08-29T20:48:38.336)
+/Users/ajaydahal/v4/the_mcp/docs/existing_mcp_servers.md (1476 bytes, 2025-08-29T20:02:46.369)
+/Users/ajaydahal/v4/the_mcp/docs/expected_configs.md (5531 bytes, 2025-08-29T19:59:12.483)
+/Users/ajaydahal/v4/the_mcp/filesystem_mcp_server.dart (20810 bytes, 2025-08-29T20:51:59.879)
+/Users/ajaydahal/v4/the_mcp/recent_activity.dart (11145 bytes, 2025-08-29T21:01:13.452)

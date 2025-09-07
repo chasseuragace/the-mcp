@@ -1,0 +1,22 @@
+{
+  "configVersion": 2,
+  "packages": [
+    {
+      "name": "lints",
+      "rootUri": "file:///Users/ajaydahal/.pub-cache/hosted/pub.dev/lints-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "the_mcp_conscious",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    }
+  ],
+  "generator": "pub",
+  "generatorVersion": "3.8.0",
+  "flutterRoot": "file:///Users/ajaydahal/fvm/versions/3.32.0",
+  "flutterVersion": "3.32.0",
+  "pubCache": "file:///Users/ajaydahal/.pub-cache"
+}
