@@ -3,7 +3,7 @@
 
 import 'dart:convert';
 import 'conscious_m_c_p_tool.dart';
-import 'conscious_server.dart';
+import '../conscious_server.dart';
 
 /// Ecosystem Analysis Tool
 class EcosystemAnalysisTool extends ConsciousMCPTool {

@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../core/consciousness_core.dart';
+import '../../core/consciousness_core.dart';
 
 /// Weekly Report Generation Tool for The MCP
 /// Integrates legacy scan_projects.dart functionality with consciousness awareness

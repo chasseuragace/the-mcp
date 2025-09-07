@@ -8,13 +8,13 @@ import '../core/consciousness.dart';
 import '../core/consciousness_core.dart';
 import '../core/consciousness_report.dart';
 import '../intelligence/activity_intelligence.dart';
-import 'activity_intelligence_tool.dart';
-import 'conscious_m_c_p_tool.dart';
-import 'consciousness_report_tool.dart';
-import 'ecosystem_analysis_tool.dart';
-import 'evolution_tracking_tool.dart';
-import 'pattern_recognition_tool.dart';
-import 'weekly_report_conscious_tool.dart';
+import 'tools/activity_intelligence_tool.dart';
+import 'tools/conscious_m_c_p_tool.dart';
+import 'tools/consciousness_report_tool.dart';
+import 'tools/ecosystem_analysis_tool.dart';
+import 'tools/evolution_tracking_tool.dart';
+import 'tools/pattern_recognition_tool.dart';
+import 'tools/weekly_report_conscious_tool.dart';
 
 /// Consciousness-aware MCP server implementation
 class ConsciousMCPServer implements ConsciousComponent {

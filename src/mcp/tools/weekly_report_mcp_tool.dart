@@ -1,4 +1,4 @@
-import '../core/consciousness_core.dart';
+import '../../core/consciousness_core.dart';
 import 'weekly_report_tool.dart';
 
 /// MCP Tool for Weekly Report Generation

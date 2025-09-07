@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'src/intelligence/activity_intelligence.dart';
-import 'src/intelligence/activity_intelligence_config.dart';
+import '../src/intelligence/activity_intelligence.dart';
+import '../src/intelligence/activity_intelligence_config.dart';
 
 void main() async {
   final config = ActivityIntelligenceConfig(

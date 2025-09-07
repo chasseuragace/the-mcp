@@ -2,10 +2,10 @@
 // Refactored from filesystem_mcp_server.dart with consciousness integration
 
 import 'dart:convert';
-import '../core/consciousness.dart';
-import '../core/consciousness_core.dart';
+import '../../core/consciousness.dart';
+import '../../core/consciousness_core.dart';
 import 'conscious_m_c_p_tool.dart';
-import 'conscious_server.dart';
+import '../conscious_server.dart';
 
 /// Consciousness Report Tool
 class ConsciousnessReportTool extends ConsciousMCPTool {

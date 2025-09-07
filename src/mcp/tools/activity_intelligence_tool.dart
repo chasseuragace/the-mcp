@@ -4,10 +4,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import '../intelligence/activity_intelligence.dart';
-import '../intelligence/activity_intelligence_config.dart';
+import '../../intelligence/activity_intelligence.dart';
+import '../../intelligence/activity_intelligence_config.dart';
 import 'conscious_m_c_p_tool.dart';
-import 'conscious_server.dart';
+import '../conscious_server.dart';
 
 /// Activity Intelligence MCP Tool
 class ActivityIntelligenceTool extends ConsciousMCPTool {
