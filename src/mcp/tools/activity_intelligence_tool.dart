@@ -78,6 +78,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
           'time_ago': timeAgo,
           'path': file.path,
           'name': file.name,
+          'size':file.size,
           'extension': file.extension,
         };
       }).toList();

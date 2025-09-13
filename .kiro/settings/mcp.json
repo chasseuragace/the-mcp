@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "the-mcp": {
+      "command": "dart",
+      "args": [
+        "run",
+        "/Users/ajaydahal/v4/the_mcp/src/main.dart"
+      ],
+      "env": {
+        "MCP_READ_PATHS": "/Users/ajaydahal,/Users/ajaydahal/bin",
+        "MCP_WRITE_PATHaS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
+        "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "consciousness_report",
+        "evolution_tracking",
+        "pattern_recognition",
+        "ecosystem_analysis",
+        "activity_intelligence",
+        "mcp0_weekly_report"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/ajaydahal"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "/Users/ajaydahal/the calender"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

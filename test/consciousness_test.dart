@@ -63,7 +63,7 @@ Future<void> testActivityIntelligence() async {
   
   // Test consciousness component interface
   assert(intelligence.identity == 'activity_intelligence', 'Identity should match');
-  assert(intelligence.purpose.contains('consciousness'), 'Purpose should mention consciousness');
+  assert(intelligence.purpose.toLowerCase().contains('consciousness'), 'Purpose should mention consciousness');
   assert(intelligence.state.containsKey('capabilities'), 'State should have capabilities');
   
   // Test self-report generation

@@ -7,7 +7,7 @@ import 'dart:async';
 import '../core/consciousness.dart';
 import '../core/consciousness_core.dart';
 import '../core/consciousness_report.dart';
-import '../intelligence/activity_intelligence.dart';
+
 import 'tools/activity_intelligence_tool.dart';
 
 import 'tools/consciousness_report_tool.dart';
@@ -15,7 +15,7 @@ import 'tools/ecosystem_analysis_tool.dart';
 import 'tools/entity/conscious_m_c_p_tool.dart';
 import 'tools/evolution_tracking_tool.dart';
 import 'tools/pattern_recognition_tool.dart';
-import 'tools/weekly_report_tool.dart';
+
 import 'weekly_report_m_c_p_tool_wrapper.dart';
 
 

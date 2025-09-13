@@ -181,14 +181,67 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
         }
       }
       
-      // Python
+      // Python - More flexible detection
       if (File('$path${sep}requirements.txt').existsSync() || 
           File('$path${sep}pyproject.toml').existsSync() ||
           File('$path${sep}setup.py').existsSync()) {
         return 'Python';
       }
+      
+      // // Flexible Python detection - check for Python files in src structure
+      // final srcDir = Directory('$path${sep}src');
+      // if (srcDir.existsSync()) {
+      //   if (_hasPythonFiles(srcDir)) {
+      //     return 'Python';
+      //   }
+      //   if (_hasJavaScriptFiles(srcDir)) {
+      //     return 'Node.js';
+      //   }
+      //   if (_hasDartFiles(srcDir)) {
+      //     return 'Flutter';
+      //   }
+      // }
+      
+      // // Check root directory for code files
+      // if (_hasPythonFiles(dir)) {
+      //   return 'Python';
+      // }
+      
     } catch (e) {}
     return null;
+  }
+  
+  bool _hasPythonFiles(Directory dir) {
+    try {
+      final files = dir.listSync(recursive: false, followLinks: false);
+      return files.any((entity) => 
+        entity is File && entity.path.endsWith('.py'));
+    } catch (e) {
+      return false;
+    }
+  }
+  
+  bool _hasJavaScriptFiles(Directory dir) {
+    try {
+      final files = dir.listSync(recursive: false, followLinks: false);
+      return files.any((entity) => 
+        entity is File && (entity.path.endsWith('.js') || 
+                          entity.path.endsWith('.ts') ||
+                          entity.path.endsWith('.tsx') ||
+                          entity.path.endsWith('.jsx')));
+    } catch (e) {
+      return false;
+    }
+  }
+  
+  bool _hasDartFiles(Directory dir) {
+    try {
+      final files = dir.listSync(recursive: false, followLinks: false);
+      return files.any((entity) => 
+        entity is File && entity.path.endsWith('.dart'));
+    } catch (e) {
+      return false;
+    }
   }
   
   DateTime? _getLastModifiedSync(Directory projectDir, String projectType) {
