@@ -21,6 +21,7 @@ import 'tools/daily_handover_tool.dart';
 import 'tools/commit_composer_tool.dart';
 import 'tools/thought_tagger_tool.dart';
 import 'tools/consciousness_data_tool.dart';
+import 'tools/git_activity_tool.dart';
 
 import 'weekly_report_m_c_p_tool_wrapper.dart';
 
@@ -78,6 +79,7 @@ class ConsciousMCPServer implements ConsciousComponent {
     _addTool(CommitComposerTool(_kiroConsciousness));
     _addTool(ThoughtTaggerTool(_kiroConsciousness));
     _addTool(ConsciousnessDataTool(_kiroConsciousness));
+    _addTool(GitActivityTool(_kiroConsciousness));
     
     _consciousness.recordEvolution('conscious_tools_initialized', {
       'toolCount': _tools.length,

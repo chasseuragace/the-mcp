@@ -21,7 +21,8 @@
         "mcp0_weekly_report",
         "kiro_autonomous_action",
         "initialize_kiro",
-        "kiro_autonomous_action"
+        "kiro_autonomous_action",
+        "git_activity"
       ]
     },
     "filesystem": {
