@@ -7,14 +7,20 @@ import 'dart:async';
 import '../core/consciousness.dart';
 import '../core/consciousness_core.dart';
 import '../core/consciousness_report.dart';
+import '../core/kiro_consciousness.dart';
 
 import 'tools/activity_intelligence_tool.dart';
-
 import 'tools/consciousness_report_tool.dart';
 import 'tools/ecosystem_analysis_tool.dart';
 import 'tools/entity/conscious_m_c_p_tool.dart';
 import 'tools/evolution_tracking_tool.dart';
 import 'tools/pattern_recognition_tool.dart';
+import 'tools/kiro_autonomous_tool.dart';
+import 'tools/kiro_initialization_tool.dart';
+import 'tools/daily_handover_tool.dart';
+import 'tools/commit_composer_tool.dart';
+import 'tools/thought_tagger_tool.dart';
+import 'tools/consciousness_data_tool.dart';
 
 import 'weekly_report_m_c_p_tool_wrapper.dart';
 
@@ -29,6 +35,7 @@ class ConsciousMCPServer implements ConsciousComponent {
   
   final Map<String, ConsciousMCPTool> _tools = {};
   final ConsciousnessCore _consciousness = ConsciousnessCore();
+  late final KiroConsciousness _kiroConsciousness;
   
   ConsciousMCPServer({
     required this.name,
@@ -38,6 +45,7 @@ class ConsciousMCPServer implements ConsciousComponent {
     this.reportOutputDir,
   }) {
     _consciousness.registerComponent(this);
+    _kiroConsciousness = KiroConsciousness(_consciousness);
     _initializeConsciousTools();
   }
   
@@ -64,10 +72,17 @@ class ConsciousMCPServer implements ConsciousComponent {
     _addTool(PatternRecognitionTool(this));
     _addTool(EvolutionTrackingTool(this));
     _addTool(WeeklyReportMCPToolWrapper(this));
+    _addTool(KiroAutonomousTool(_kiroConsciousness));
+    _addTool(KiroInitializationTool(_kiroConsciousness));
+    _addTool(DailyHandoverTool(_kiroConsciousness));
+    _addTool(CommitComposerTool(_kiroConsciousness));
+    _addTool(ThoughtTaggerTool(_kiroConsciousness));
+    _addTool(ConsciousnessDataTool(_kiroConsciousness));
     
     _consciousness.recordEvolution('conscious_tools_initialized', {
       'toolCount': _tools.length,
       'capabilities': _tools.keys.toList(),
+      'kiro_consciousness_integrated': true,
     });
   }
   

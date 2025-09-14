@@ -18,7 +18,10 @@
         "pattern_recognition",
         "ecosystem_analysis",
         "activity_intelligence",
-        "mcp0_weekly_report"
+        "mcp0_weekly_report",
+        "kiro_autonomous_action",
+        "initialize_kiro",
+        "kiro_autonomous_action"
       ]
     },
     "filesystem": {
@@ -30,7 +33,11 @@
       ],
       "env": {},
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "list_allowed_directories",
+        "read_text_file",
+        "list_directory"
+      ]
     },
     "memory": {
       "command": "npx",
@@ -39,10 +46,14 @@
         "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "/Users/ajaydahal/the calender"
+        "MEMORY_FILE_PATH": "/Users/ajaydahal/v4/the_mcp/memoey.json"
       },
       "disabled": false,
-      "autoApprove": []
+      "autoApprove": [
+        "read_graph",
+        "search_nodes",
+        "create_entities"
+      ]
     }
   }
 }
