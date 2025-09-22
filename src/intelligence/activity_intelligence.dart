@@ -8,6 +8,7 @@ import '../core/consciousness_core.dart';
 import '../core/consciousness_report.dart';
 import 'activity_intelligence_config.dart';
 import 'activity_intelligence_exception.dart';
+import 'git_activity_tracker.dart';
 import 'models.dart';
 
 
@@ -43,7 +44,7 @@ class ActivityIntelligence implements ConsciousComponent {
     ],
   };
   
-  /// Generate consciousness-aware activity report
+  /// Generate consciousness-aware activity report with git integration
   Future<ActivityIntelligenceReport> analyzeActivity() async {
     final startTime = DateTime.now();
     
@@ -51,6 +52,7 @@ class ActivityIntelligence implements ConsciousComponent {
       'root': config.root,
       'timeWindow': config.hours,
       'ai_collaboration': true,
+      'git_integration': true,
     });
     
     final rootDir = Directory(config.root);
@@ -62,9 +64,13 @@ class ActivityIntelligence implements ConsciousComponent {
     final files = <ActivityFile>[];
     final directories = <ActivityDirectory>[];
     
-    // Use proven legacy algorithm with consciousness integration
-    await _legacyWalkFiles(rootDir, threshold, files, 0);
-    await _legacyWalkDirectories(rootDir, threshold, directories, 0);
+    // Parallel analysis: filesystem + git activity
+    final futures = await Future.wait([
+      _analyzeFilesystemActivity(rootDir, threshold, files, directories),
+      _analyzeGitActivity(),
+    ]);
+    
+    final gitReport = futures[1] as GitActivityReport?;
     
     // Sort by modification time (most recent first)
     files.sort((a, b) => b.modified.compareTo(a.modified));
@@ -77,18 +83,68 @@ class ActivityIntelligence implements ConsciousComponent {
       timeWindow: Duration(hours: config.hours),
       files: files.take(config.fileCount).toList(),
       directories: directories.take(config.dirCount).toList(),
-      patterns: _detectDevelopmentPatterns(files, directories),
-      consciousnessMarkers: _generateConsciousnessMarkers(files, directories),
+      patterns: _detectDevelopmentPatterns(files, directories, gitReport),
+      consciousnessMarkers: _generateConsciousnessMarkers(files, directories, gitReport),
+      gitActivity: gitReport,
     );
     
     _consciousness.recordEvolution('activity_analysis_completed', {
       'filesFound': files.length,
       'directoriesFound': directories.length,
+      'gitRepositories': gitReport?.repositories.length ?? 0,
+      'gitCommits': gitReport?.summary['total_commits'] ?? 0,
       'patternsDetected': report.patterns.length,
       'analysisTime': report.analysisTime.inMilliseconds,
     });
     
     return report;
+  }
+  
+  /// Analyze filesystem activity (existing logic)
+  Future<void> _analyzeFilesystemActivity(Directory rootDir, DateTime threshold, 
+      List<ActivityFile> files, List<ActivityDirectory> directories) async {
+    // Use proven legacy algorithm with consciousness integration
+    await _legacyWalkFiles(rootDir, threshold, files, 0);
+    await _legacyWalkDirectories(rootDir, threshold, directories, 0);
+  }
+  
+  /// Analyze git activity using the git activity tracker
+  Future<GitActivityReport?> _analyzeGitActivity() async {
+    try {
+      // Get current user's git email
+      final gitEmail = await _getCurrentGitEmail();
+      if (gitEmail == null) return null;
+      
+      final gitConfig = GitActivityConfig(
+        rootPath: config.root,
+        userEmail: gitEmail,
+        hours: config.hours,
+        maxRepos: 20, // More repos for comprehensive analysis
+      );
+      
+      final tracker = GitActivityTracker(gitConfig);
+      return await tracker.generateReport();
+    } catch (e) {
+      // Git analysis failed, continue with filesystem-only analysis
+      _consciousness.recordEvolution('git_analysis_failed', {
+        'error': e.toString(),
+        'fallback': 'filesystem_only',
+      });
+      return null;
+    }
+  }
+  
+  /// Get current user's git email
+  Future<String?> _getCurrentGitEmail() async {
+    try {
+      final result = await Process.run('git', ['config', '--global', 'user.email']);
+      if (result.exitCode == 0) {
+        return (result.stdout as String).trim();
+      }
+    } catch (e) {
+      // Git not available or not configured
+    }
+    return null;
   }
   
   /// Legacy-proven file walking algorithm with consciousness integration
@@ -228,10 +284,11 @@ class ActivityIntelligence implements ConsciousComponent {
   List<DevelopmentPattern> _detectDevelopmentPatterns(
     List<ActivityFile> files, 
     List<ActivityDirectory> directories,
+    GitActivityReport? gitReport,
   ) {
     final patterns = <DevelopmentPattern>[];
     
-    // Language/framework detection
+    // Language/framework detection from filesystem
     final extensions = <String, int>{};
     for (final file in files) {
       extensions[file.extension] = (extensions[file.extension] ?? 0) + 1;
@@ -250,7 +307,7 @@ class ActivityIntelligence implements ConsciousComponent {
       ));
     }
     
-    // Detect development rhythm
+    // Detect development rhythm from filesystem
     final hourlyActivity = <int, int>{};
     for (final file in files) {
       final hour = file.modified.hour;
@@ -267,18 +324,77 @@ class ActivityIntelligence implements ConsciousComponent {
       ));
     }
     
+    // Git-based patterns
+    if (gitReport != null && gitReport.repositories.isNotEmpty) {
+      // Development intensity pattern
+      final totalCommits = gitReport.summary['total_commits'] as int;
+      final developmentPattern = gitReport.summary['development_pattern'] as String;
+      
+      patterns.add(DevelopmentPattern(
+        type: 'git_development_intensity',
+        description: 'Git activity: $developmentPattern',
+        confidence: totalCommits > 0 ? 1.0 : 0.0,
+        metadata: {
+          'total_commits': totalCommits,
+          'total_repositories': gitReport.repositories.length,
+          'pattern': developmentPattern,
+        },
+      ));
+      
+      // Most active project pattern
+      if (gitReport.repositories.isNotEmpty) {
+        final mostActive = gitReport.repositories.first;
+        patterns.add(DevelopmentPattern(
+          type: 'primary_project',
+          description: 'Most active project: ${mostActive.name}',
+          confidence: 0.9,
+          metadata: {
+            'project_name': mostActive.name,
+            'project_path': mostActive.path,
+            'commits': mostActive.recentCommits.length,
+            'last_activity': mostActive.lastActivity.toIso8601String(),
+          },
+        ));
+      }
+      
+      // Commit frequency pattern
+      if (totalCommits > 0) {
+        final hoursAnalyzed = gitReport.hoursAnalyzed;
+        final commitsPerDay = (totalCommits / (hoursAnalyzed / 24)).toStringAsFixed(1);
+        
+        patterns.add(DevelopmentPattern(
+          type: 'commit_frequency',
+          description: 'Commit frequency: $commitsPerDay commits/day',
+          confidence: 0.8,
+          metadata: {
+            'commits_per_day': double.parse(commitsPerDay),
+            'total_commits': totalCommits,
+            'time_window_hours': hoursAnalyzed,
+          },
+        ));
+      }
+    }
+    
     return patterns;
   }
   
   Map<String, dynamic> _generateConsciousnessMarkers(
     List<ActivityFile> files, 
     List<ActivityDirectory> directories,
+    GitActivityReport? gitReport,
   ) {
+    final baseHealth = files.length + directories.length;
+    final gitHealth = gitReport != null ? 
+        (gitReport.summary['total_commits'] as int) * 10 : 0;
+    
     return {
       'temporal_awareness': files.isNotEmpty || directories.isNotEmpty,
-      'pattern_recognition': _detectDevelopmentPatterns(files, directories).isNotEmpty,
-      'ecosystem_health': files.length + directories.length,
+      'pattern_recognition': _detectDevelopmentPatterns(files, directories, gitReport).isNotEmpty,
+      'ecosystem_health': baseHealth + gitHealth,
       'consciousness_amplification': true,
+      'git_integration': gitReport != null,
+      'development_velocity': gitReport?.summary['total_commits'] ?? 0,
+      'project_diversity': gitReport?.repositories.length ?? 0,
     };
   }
   

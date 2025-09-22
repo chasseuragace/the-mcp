@@ -1,7 +1,7 @@
 // Activity Intelligence - Consciousness-Aware File System Analysis
 // Refactored from recent_activity.dart with consciousness integration
 
-/// Activity analysis results with consciousness markers
+/// Activity analysis results with consciousness markers and git integration
 class ActivityIntelligenceReport {
   final DateTime timestamp;
   final Duration analysisTime;
@@ -11,6 +11,7 @@ class ActivityIntelligenceReport {
   final List<ActivityDirectory> directories;
   final List<DevelopmentPattern> patterns;
   final Map<String, dynamic> consciousnessMarkers;
+  final dynamic gitActivity; // GitActivityReport? - using dynamic to avoid circular imports
   
   ActivityIntelligenceReport({
     required this.timestamp,
@@ -21,6 +22,7 @@ class ActivityIntelligenceReport {
     required this.directories,
     required this.patterns,
     required this.consciousnessMarkers,
+    this.gitActivity,
   });
   
   Map<String, dynamic> toJson() => {
@@ -32,6 +34,7 @@ class ActivityIntelligenceReport {
     'directories': directories.map((d) => d.toJson()).toList(),
     'patterns': patterns.map((p) => p.toJson()).toList(),
     'consciousnessMarkers': consciousnessMarkers,
+    'gitActivity': gitActivity?.toJson(),
   };
 }
 

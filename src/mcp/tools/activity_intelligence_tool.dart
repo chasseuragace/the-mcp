@@ -58,8 +58,8 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       
       final intelligence = ActivityIntelligence(config);
       
-      // Run async analysis with extended timeout (60 seconds)
-      final report = _runAnalysisSync(intelligence, Duration(seconds: 60));
+      // Run synchronous analysis with extended timeout (60 seconds)
+      final report = _runAnalysisWithSimpleGitIntegration(intelligence.config, Duration(seconds: 60));
       
       // Convert to MCP tool format
       final files = report.files.map((file) {
@@ -106,7 +106,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       // Combine files and directories
       final allItems = [...files, ...directories];
       
-      return json.encode({
+      final result = {
         'analysis_type': 'activity_intelligence',
         'timestamp': report.timestamp.toIso8601String(),
         'root': root,
@@ -124,10 +124,17 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
         'meta_analysis': {
           'algorithm_source': 'integrated_consciousness_aware_intelligence',
           'integration_method': 'ActivityIntelligence_direct_integration',
-          'consciousness_enhancement': 'Phase 3 functional consciousness with legacy algorithms',
+          'consciousness_enhancement': 'Phase 3 functional consciousness with git integration',
           'analysis_time_ms': report.analysisTime.inMilliseconds,
         },
-      });
+      };
+      
+      // Add git activity data if available
+      if (report.gitActivity != null) {
+        result['git_activity'] = report.gitActivity;
+      }
+      
+      return json.encode(result);
     } catch (e) {
       return json.encode({
         'analysis_type': 'activity_intelligence',
@@ -139,18 +146,8 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     }
   }
   
-  /// Run async analysis synchronously with extended timeout
-  dynamic _runAnalysisSync(ActivityIntelligence intelligence, Duration timeout) {
-    // Use a simpler approach: create a new isolate for the async work
-    // For now, fall back to synchronous file system operations
-    
-    // Since the async integration is complex in MCP context, 
-    // let's create a synchronous version of the core logic
-    return _performSynchronousAnalysis(intelligence.config, timeout);
-  }
-  
-  /// Perform synchronous filesystem analysis using ActivityIntelligence patterns
-  dynamic _performSynchronousAnalysis(ActivityIntelligenceConfig config, Duration timeout) {
+  /// Perform filesystem analysis with simple git integration
+  dynamic _runAnalysisWithSimpleGitIntegration(ActivityIntelligenceConfig config, Duration timeout) {
     final startTime = DateTime.now();
     final threshold = DateTime.now().subtract(Duration(hours: config.hours));
     final files = <Map<String, dynamic>>[];
@@ -162,8 +159,84 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
         throw Exception('Root directory not found: ${config.root}');
       }
       
-      // Synchronous file walking with timeout check
+      // Filesystem analysis
       _walkDirectorySync(rootDir, threshold, files, directories, config, startTime, timeout);
+      
+      // Simple git integration - check if git repo exists and has recent commits
+      Map<String, dynamic>? gitData;
+      try {
+        final userEmail = _getCurrentGitEmailSync();
+        if (userEmail != null && Directory('${config.root}/.git').existsSync()) {
+          final threshold = DateTime.now().subtract(Duration(hours: config.hours));
+          final sinceStr = threshold.toIso8601String().split('T').first;
+          
+          final result = Process.runSync(
+            'git',
+            ['log', '--author=$userEmail', '--since=$sinceStr', '--pretty=oneline', '--no-merges'],
+            workingDirectory: config.root,
+          );
+          
+          if (result.exitCode == 0) {
+            final output = result.stdout as String;
+            final commits = output.trim().isEmpty ? 0 : output.trim().split('\n').length;
+            
+            if (commits > 0) {
+              // Get detailed commit information
+              final detailResult = Process.runSync(
+                'git',
+                ['log', '--author=$userEmail', '--since=$sinceStr', '--pretty=format:%H|%an|%ae|%ai|%s', '--no-merges', '-10'],
+                workingDirectory: config.root,
+              );
+              
+              final commitDetails = <Map<String, dynamic>>[];
+              if (detailResult.exitCode == 0) {
+                final lines = (detailResult.stdout as String).trim().split('\n');
+                for (final line in lines) {
+                  if (line.isNotEmpty) {
+                    final parts = line.split('|');
+                    if (parts.length >= 5) {
+                      commitDetails.add({
+                        'hash': parts[0].substring(0, 8),
+                        'author': parts[1],
+                        'email': parts[2],
+                        'date': parts[3],
+                        'message': parts.sublist(4).join('|'),
+                      });
+                    }
+                  }
+                }
+              }
+              
+              gitData = {
+                'totalCommits': commits,
+                'totalRepos': 1,
+                'repositories': [{
+                  'name': config.root.split('/').last,
+                  'path': config.root,
+                  'commits': commits,
+                  'lastCommit': commitDetails.isNotEmpty ? commitDetails.first : null,
+                  'recentCommits': commitDetails,
+                  'stats': {
+                    'total_commits': commits,
+                    'most_active_day': null,
+                  },
+                }],
+                'summary': {
+                  'total_commits': commits,
+                  'total_repositories': 1,
+                  'most_active_repo': config.root.split('/').last,
+                  'development_pattern': commits >= 20 ? 'High activity - Active development phase' 
+                                       : commits >= 5 ? 'Moderate activity - Steady development'
+                                       : 'Light activity - Maintenance mode',
+                },
+              };
+            }
+          }
+        }
+      } catch (e) {
+        // Git analysis failed, continue with filesystem only
+        gitData = null;
+      }
       
       // Sort by modification time (most recent first)
       files.sort((a, b) => (b['modified'] as DateTime).compareTo(a['modified'] as DateTime));
@@ -173,8 +246,8 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       final limitedFiles = files.take(config.fileCount).toList();
       final limitedDirs = directories.take(config.dirCount).toList();
       
-      // Generate patterns
-      final patterns = _generatePatterns(limitedFiles, limitedDirs);
+      // Generate patterns with git data
+      final patterns = _generatePatterns(limitedFiles, limitedDirs, gitData);
       
       return _createMockReport(
         timestamp: DateTime.now(),
@@ -184,10 +257,25 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
         files: limitedFiles,
         directories: limitedDirs,
         patterns: patterns,
+        gitData: gitData,
       );
     } catch (e) {
       throw Exception('Synchronous analysis failed: $e');
     }
+  }
+
+  
+  /// Get current user's git email (synchronous version)
+  String? _getCurrentGitEmailSync() {
+    try {
+      final result = Process.runSync('git', ['config', '--global', 'user.email']);
+      if (result.exitCode == 0) {
+        return (result.stdout as String).trim();
+      }
+    } catch (e) {
+      // Git not available or not configured
+    }
+    return null;
   }
   
   void _walkDirectorySync(Directory dir, DateTime threshold, List<Map<String, dynamic>> files, 
@@ -264,7 +352,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     return false;
   }
   
-  List<Map<String, dynamic>> _generatePatterns(List<Map<String, dynamic>> files, List<Map<String, dynamic>> directories) {
+  List<Map<String, dynamic>> _generatePatterns(List<Map<String, dynamic>> files, List<Map<String, dynamic>> directories, Map<String, dynamic>? gitData) {
     final patterns = <Map<String, dynamic>>[];
     
     // Language/framework detection
@@ -305,6 +393,51 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       });
     }
     
+    // Git-based patterns
+    if (gitData != null) {
+      final totalCommits = gitData['totalCommits'] as int;
+      final totalRepos = gitData['totalRepos'] as int;
+      
+      if (totalCommits > 0) {
+        // Development intensity
+        String intensity;
+        if (totalCommits >= 20) {
+          intensity = 'High activity - Active development phase';
+        } else if (totalCommits >= 5) {
+          intensity = 'Moderate activity - Steady development';
+        } else {
+          intensity = 'Light activity - Maintenance mode';
+        }
+        
+        patterns.add({
+          'type': 'git_development_intensity',
+          'description': 'Git activity: $intensity',
+          'confidence': 1.0,
+          'metadata': {
+            'total_commits': totalCommits,
+            'total_repositories': totalRepos,
+            'pattern': intensity,
+          },
+        });
+        
+        // Most active project
+        final repositories = gitData['repositories'] as List<Map<String, dynamic>>;
+        if (repositories.isNotEmpty) {
+          final mostActive = repositories.first;
+          patterns.add({
+            'type': 'primary_project',
+            'description': 'Most active project: ${mostActive['name']}',
+            'confidence': 0.9,
+            'metadata': {
+              'project_name': mostActive['name'],
+              'project_path': mostActive['path'],
+              'commits': mostActive['commits'],
+            },
+          });
+        }
+      }
+    }
+    
     return patterns;
   }
   
@@ -316,6 +449,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     required List<Map<String, dynamic>> files,
     required List<Map<String, dynamic>> directories,
     required List<Map<String, dynamic>> patterns,
+    Map<String, dynamic>? gitData,
   }) {
     return MockActivityReport(
       timestamp: timestamp,
@@ -343,9 +477,13 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       consciousnessMarkers: {
         'temporal_awareness': files.isNotEmpty || directories.isNotEmpty,
         'pattern_recognition': patterns.isNotEmpty,
-        'ecosystem_health': files.length + directories.length,
+        'ecosystem_health': files.length + directories.length + (gitData?['totalCommits'] ?? 0) * 5,
         'consciousness_amplification': true,
+        'git_integration': gitData != null,
+        'development_velocity': gitData?['totalCommits'] ?? 0,
+        'project_diversity': gitData?['totalRepos'] ?? 0,
       },
+      gitActivity: gitData,
     );
   }
   
@@ -369,6 +507,7 @@ class MockActivityReport {
   final List<MockActivityDirectory> directories;
   final List<MockDevelopmentPattern> patterns;
   final Map<String, dynamic> consciousnessMarkers;
+  final Map<String, dynamic>? gitActivity;
   
   MockActivityReport({
     required this.timestamp,
@@ -379,6 +518,7 @@ class MockActivityReport {
     required this.directories,
     required this.patterns,
     required this.consciousnessMarkers,
+    this.gitActivity,
   });
 }
 
