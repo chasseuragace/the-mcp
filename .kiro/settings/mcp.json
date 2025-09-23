@@ -47,7 +47,7 @@
         "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "/Users/ajaydahal/v4/the_mcp/memoey.json"
+        "MEMORY_FILE_PATH": "/Users/ajaydahal/v4/the_mcp/memory.json"
       },
       "disabled": false,
       "autoApprove": [
