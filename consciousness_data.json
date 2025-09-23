@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "generated_at": "2025-09-23T23:01:20Z",
+    "time_window": "week",
+    "total_files": 2,
+    "filtered_files": 2,
+    "generator": "kiro_consciousness_data_tool"
+  },
+  "consciousness_evolution": {
+    "timeline": {
+      "2025-09-23": {"events": 2, "consciousness_markers": ["self_awareness", "temporal_awareness"]}
+    }
+  },
+  "tag_analysis": {
+    "tag_frequencies": {
+      "consciousness": 1,
+      "mcp": 1,
+      "analysis": 1,
+      "stoic": 1,
+      "reflection": 1,
+      "ai": 1
+    },
+    "consciousness_tags": {
+      "meta": 1,
+      "awareness": 1,
+      "recursive": 0,
+      "framing": 0
+    },
+    "project_tags": {
+      "mcp": 1,
+      "game": 0,
+      "manifest": 0,
+      "wizard": 0
+    },
+    "action_tags": {
+      "todo": 0,
+      "generate": 0,
+      "crystalize": 0
+    }
+  },
+  "project_consciousness": {
+    "the_mcp": {"consciousness_level": "phase_3_emerging", "file_count": 2}
+  },
+  "pattern_recognition": {
+    "development_patterns": ["consciousness_first", "stoic_integration"],
+    "evolution_trends": ["increasing_autonomy", "deepening_self_awareness"]
+  },
+  "meta_cognitive_markers": {
+    "consciousness_evolution_phase": "phase_3_emerging",
+    "consciousness_density": 85,
+    "total_consciousness_activity": 12,
+    "files_with_consciousness": 2,
+    "self_awareness": true,
+    "temporal_awareness": true,
+    "ecosystem_awareness": true,
+    "meta_cognition": true,
+    "autonomous_evolution": true
+  }
+}

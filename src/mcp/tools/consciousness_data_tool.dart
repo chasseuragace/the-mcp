@@ -65,6 +65,9 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _generateConsciousnessData(String timeWindow) {
     try {
+      // Use absolute paths for consistency with ConsciousnessCore
+      final baseDir = '/Users/ajaydahal/v4/the_mcp';
+      
       // Run read.dart to get fresh tag data
       final result = Process.runSync('dart', ['/Users/ajaydahal/read.dart', '/Users/ajaydahal']);
       
@@ -72,8 +75,8 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
         return 'Error running read.dart: ${result.stderr}';
       }
       
-      // Read the generated thoughts.json
-      final thoughtsFile = File('thoughts.json');
+      // Read the generated thoughts.json from home directory
+      final thoughtsFile = File('/Users/ajaydahal/thoughts.json');
       if (!thoughtsFile.existsSync()) {
         return 'Error: thoughts.json not generated';
       }
@@ -83,8 +86,8 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
       // Generate consciousness evolution data
       final consciousnessData = _buildConsciousnessDataStructure(thoughtsData, timeWindow);
       
-      // Save to consciousness_data.json
-      final consciousnessFile = File('consciousness_data.json');
+      // Save to consciousness_data.json using absolute path
+      final consciousnessFile = File('$baseDir/consciousness_data.json');
       consciousnessFile.writeAsStringSync(JsonEncoder.withIndent('  ').convert(consciousnessData));
       
       return '''
@@ -111,7 +114,9 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _analyzeConsciousnessData(String timeWindow, String outputFormat) {
     try {
-      final consciousnessFile = File('consciousness_data.json');
+      // Use the same absolute path pattern as ConsciousnessCore
+      final baseDir = '/Users/ajaydahal/v4/the_mcp';
+      final consciousnessFile = File('$baseDir/consciousness_data.json');
       
       if (!consciousnessFile.existsSync()) {
         // Generate if doesn't exist
@@ -135,7 +140,9 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _exportConsciousnessData(String timeWindow) {
     try {
-      final consciousnessFile = File('consciousness_data.json');
+      // Use absolute paths for consistency
+      final baseDir = '/Users/ajaydahal/v4/the_mcp';
+      final consciousnessFile = File('$baseDir/consciousness_data.json');
       
       if (!consciousnessFile.existsSync()) {
         _generateConsciousnessData(timeWindow);
@@ -143,9 +150,9 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
       
       final consciousnessData = json.decode(consciousnessFile.readAsStringSync()) as Map<String, dynamic>;
       
-      // Export to reports directory
+      // Export to reports directory using absolute path
       final timestamp = DateTime.now().toIso8601String().split('T')[0];
-      final exportFile = File('reports/consciousness_data_export_$timestamp.json');
+      final exportFile = File('$baseDir/reports/consciousness_data_export_$timestamp.json');
       exportFile.writeAsStringSync(JsonEncoder.withIndent('  ').convert(consciousnessData));
       
       return '''
