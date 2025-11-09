@@ -55,7 +55,7 @@ class ThoughtTaggerTool extends ConsciousMCPTool {
   String _analyzeThoughts(String directory, List<String>? focusTags, String timeFilter) {
     final timestamp = DateTime.now().toIso8601String();
     
-    // This would integrate with read.dart functionality
+    // This would implement a search by keyword feature 
     // For now, providing the framework and analysis structure
     
     return '''
@@ -154,9 +154,14 @@ ${_generateRecommendations()}
   String _generateTagFrequencyAnalysis(List<String>? focusTags, String timeFilter) {
     try {
       // Run read.dart to generate fresh thoughts.json
-      final result = Process.runSync('dart', ['/Users/ajaydahal/read.dart', '/Users/ajaydahal']);
-      
-      final thoughtsFile = File('thoughts.json');
+      // Pass focus tags if provided
+      final List<String> args = ['/Users/ajaydahal/read.dart', '/Users/ajaydahal'];
+      if (focusTags != null && focusTags.isNotEmpty) {
+        args.addAll(['--focus-tags', focusTags.join(',')]);
+      }
+      final result = Process.runSync('dart', args);
+      // /Users/ajaydahal/thoughts.json not just thoughts.json
+      final thoughtsFile = File('/Users/ajaydahal/thoughts.json');
       if (!thoughtsFile.existsSync()) {
         return '**Error**: thoughts.json not found after running read.dart';
       }
@@ -200,8 +205,12 @@ ${_generateRecommendations()}
       final projectTags = ['mcp', 'game', 'manifest', 'wizard'];
       final actionTags = ['todo', 'generate', 'crystalize'];
       
+      final focusInfo = focusTags != null && focusTags.isNotEmpty 
+          ? '\n**Focus Tags Applied**: ${focusTags.join(', ')}\n' 
+          : '';
+      
       return '''
-**Analysis Period**: $timeFilter ($filteredThoughts.length files)
+**Analysis Period**: $timeFilter (${filteredThoughts.length} files)$focusInfo
 
 **Consciousness Tags**:
 ${consciousnessTags.map((tag) => '- $tag: ${tagCounts[tag] ?? 0} occurrences').join('\n')}

@@ -1,26 +1,10 @@
 [
   {
-    "path": "/Users/ajaydahal/v6/wizard.md",
-    "created": "2025-09-11T08:50:45.506",
-    "updated": "2025-08-28T14:34:40.264",
-    "size": 5555,
-    "tags": [
-      {
-        "tag": "manifest",
-        "count": 1
-      }
-    ]
-  },
-  {
     "path": "/Users/ajaydahal/v6/kb/2025-W35/08_CEO_Meeting.md",
     "created": "2025-09-11T08:50:45.507",
     "updated": "2025-09-10T12:18:46.474",
     "size": 2304,
     "tags": [
-      {
-        "tag": "framing",
-        "count": 1
-      },
       {
         "tag": "meta",
         "count": 1
@@ -34,16 +18,36 @@
     "size": 5702,
     "tags": [
       {
-        "tag": "framing",
-        "count": 1
-      },
-      {
         "tag": "meta",
         "count": 1
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/v6/kb/2025-W35/summary.md",
+    "created": "2025-09-17T13:58:53.215",
+    "updated": "2025-09-17T13:58:53.215",
+    "size": 12136,
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 2
       },
       {
-        "tag": "generate",
-        "count": 3
+        "tag": "kiro",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/v6/kb/2025-W35/anik.md",
+    "created": "2025-09-17T11:23:23.538",
+    "updated": "2025-09-17T11:23:23.538",
+    "size": 1088,
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 1
       }
     ]
   },
@@ -66,52 +70,16 @@
     "size": 10578,
     "tags": [
       {
-        "tag": "manifest",
+        "tag": "creation",
         "count": 1
       },
       {
-        "tag": "mcp",
-        "count": 1
-      },
-      {
-        "tag": "ishowr",
-        "count": 1
-      },
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "rojan",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 2
-      },
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
+        "tag": "kiro",
         "count": 2
       },
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 7
-      },
-      {
-        "tag": "generate",
-        "count": 2
       }
     ]
   },
@@ -122,25 +90,10 @@
     "size": 5004,
     "tags": [
       {
-        "tag": "mcp",
-        "count": 1
-      },
-      {
-        "tag": "framing",
-        "count": 1
-      },
-      {
-        "tag": "awareness",
+        "tag": "kiro",
         "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/v6/kb/2025-W37/reflection_11_sept.md",
-    "created": "2025-09-11T15:24:35.164",
-    "updated": "2025-09-11T15:24:35.164",
-    "size": 553,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/v6/kb/2025-W37/relections_10_sept.md",
@@ -149,20 +102,8 @@
     "size": 5864,
     "tags": [
       {
-        "tag": "manifest",
+        "tag": "creation",
         "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 6
-      },
-      {
-        "tag": "todo",
-        "count": 8
-      },
-      {
-        "tag": "generate",
-        "count": 2
       }
     ]
   },
@@ -197,32 +138,22 @@
     "size": 11397,
     "tags": [
       {
-        "tag": "anki",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
-      {
         "tag": "meta",
         "count": 1
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/v6/portal_web/docs/raw_thought.md",
-    "created": "2025-09-11T08:50:45.530",
-    "updated": "2025-09-01T09:11:17.532",
-    "size": 9046,
-    "tags": []
-  },
-  {
     "path": "/Users/ajaydahal/v6/cofnitivive_reframing_engine/docs/planning/architecture.md",
     "created": "2025-09-11T08:50:47.910",
     "updated": "2025-09-01T20:27:34.047",
     "size": 2628,
-    "tags": []
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 1
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/v6/cofnitivive_reframing_engine/docs/planning/implementation_plan.md",
@@ -231,15 +162,11 @@
     "size": 6890,
     "tags": [
       {
-        "tag": "framing",
-        "count": 4
-      },
-      {
-        "tag": "meta",
+        "tag": "creation",
         "count": 1
       },
       {
-        "tag": "awareness",
+        "tag": "meta",
         "count": 1
       }
     ]
@@ -251,143 +178,64 @@
     "size": 143904,
     "tags": [
       {
-        "tag": "wizard",
-        "count": 8
+        "tag": "evolution",
+        "count": 2
       },
       {
-        "tag": "manifest",
+        "tag": "creation",
         "count": 5
-      },
-      {
-        "tag": "game",
-        "count": 16
-      },
-      {
-        "tag": "mcp",
-        "count": 7
-      },
-      {
-        "tag": "ajay",
-        "count": 398
-      },
-      {
-        "tag": "framing",
-        "count": 449
       },
       {
         "tag": "meta",
         "count": 27
-      },
-      {
-        "tag": "awareness",
-        "count": 17
-      },
-      {
-        "tag": "recursive",
-        "count": 12
-      },
-      {
-        "tag": "todo",
-        "count": 43
-      },
-      {
-        "tag": "generate",
-        "count": 14
-      },
-      {
-        "tag": "crystalize",
-        "count": 19
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/v6/cofnitivive_reframing_engine/README.md",
-    "created": "2025-09-11T08:50:47.916",
-    "updated": "2025-09-01T20:26:37.189",
-    "size": 3783,
+    "path": "/Users/ajaydahal/v8/data/source.md",
+    "created": "2025-09-20T20:42:33.126",
+    "updated": "2025-09-20T20:42:33.126",
+    "size": 13377,
     "tags": [
       {
-        "tag": "framing",
-        "count": 4
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/v6/world.md",
-    "created": "2025-09-11T08:50:48.276",
-    "updated": "2025-08-28T14:34:34.159",
-    "size": 5780,
-    "tags": [
+        "tag": "consciousness",
+        "count": 1
+      },
       {
-        "tag": "mcp",
+        "tag": "evolution",
         "count": 1
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/portal/agency_research/journal/reflection_sept_12.md",
-    "created": "2025-09-12T14:25:59.857",
-    "updated": "2025-09-12T14:25:59.857",
-    "size": 1054,
-    "tags": []
+    "path": "/Users/ajaydahal/portal/agency_research/code/plans.md",
+    "created": "2025-09-27T22:09:19.202",
+    "updated": "2025-09-27T22:09:19.202",
+    "size": 9607,
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 1
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/code/whats happening in the code .md",
-    "created": "2025-09-11T08:50:56.370",
+    "created": "2025-11-01T20:33:29.949",
     "updated": "2025-09-07T12:40:31.325",
     "size": 63787,
     "tags": [
       {
-        "tag": "wizard",
+        "tag": "evolution",
         "count": 2
       },
       {
-        "tag": "manifest",
-        "count": 3
-      },
-      {
-        "tag": "game",
-        "count": 11
-      },
-      {
-        "tag": "mcp",
-        "count": 8
-      },
-      {
-        "tag": "ajay",
-        "count": 10
-      },
-      {
-        "tag": "framing",
-        "count": 7
+        "tag": "creation",
+        "count": 2
       },
       {
         "tag": "meta",
         "count": 12
-      },
-      {
-        "tag": "recursive",
-        "count": 2
-      },
-      {
-        "tag": "todo",
-        "count": 4
-      },
-      {
-        "tag": "generate",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/test/README.md",
-    "created": "2025-09-11T08:50:56.376",
-    "updated": "2025-08-20T10:24:01.723",
-    "size": 3193,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 1
       }
     ]
   },
@@ -398,19 +246,11 @@
     "size": 3659,
     "tags": [
       {
-        "tag": "mcp",
+        "tag": "consciousness",
         "count": 1
       },
       {
         "tag": "meta",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
-      },
-      {
-        "tag": "crystalize",
         "count": 1
       }
     ]
@@ -422,6 +262,10 @@
     "size": 15792,
     "tags": [
       {
+        "tag": "creation",
+        "count": 2
+      },
+      {
         "tag": "meta",
         "count": 3
       }
@@ -429,115 +273,51 @@
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/code/sept_11_reflections_implications.md",
-    "created": "2025-09-11T16:10:55.288",
+    "created": "2025-11-01T20:33:29.952",
     "updated": "2025-09-11T16:10:55.288",
     "size": 7360,
     "tags": [
       {
-        "tag": "ajay",
-        "count": 11
-      },
-      {
-        "tag": "generate",
-        "count": 2
+        "tag": "creation",
+        "count": 7
       }
     ]
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/code/docs/guide.md",
-    "created": "2025-09-11T08:50:56.379",
-    "updated": "2025-09-06T20:31:31.732",
-    "size": 11693,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/resources/README.md",
-    "created": "2025-09-11T17:23:23.340",
-    "updated": "2025-09-11T17:23:23.340",
-    "size": 3118,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/resources/milestones/readme.md",
-    "created": "2025-09-11T17:23:23.343",
-    "updated": "2025-09-11T17:23:23.343",
-    "size": 6799,
+    "created": "2025-09-21T13:38:02.667",
+    "updated": "2025-09-21T13:38:02.667",
+    "size": 13605,
     "tags": [
       {
-        "tag": "mcp",
+        "tag": "creation",
         "count": 5
-      },
-      {
-        "tag": "rojan",
-        "count": 7
-      },
-      {
-        "tag": "ajay",
-        "count": 8
-      },
-      {
-        "tag": "todo",
-        "count": 22
-      },
-      {
-        "tag": "generate",
-        "count": 3
-      },
-      {
-        "tag": "crystalize",
-        "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/README.md",
-    "created": "2025-09-11T17:23:20.795",
-    "updated": "2025-09-11T17:23:20.795",
-    "size": 3118,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/lib/app/udaan_saarathi/features/presentation/preferences/page/readme.md",
-    "created": "2025-09-12T19:08:01.545",
-    "updated": "2025-09-12T19:08:01.545",
-    "size": 14916,
+    "created": "2025-11-01T20:33:30.046",
+    "updated": "2025-09-14T22:34:10.947",
+    "size": 21502,
     "tags": [
-      {
-        "tag": "ajay",
-        "count": 33
-      },
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 2
-      },
-      {
-        "tag": "crystalize",
-        "count": 1
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/lib/app/udaan_saarathi/features/presentation/preferences/page/plan.md",
-    "created": "2025-09-12T19:08:01.545",
-    "updated": "2025-09-12T19:08:01.545",
-    "size": 3981,
+    "path": "/Users/ajaydahal/portal/agency_research/code/UdaanSarathi2/reports/test_state_report.md",
+    "created": "2025-09-24T09:54:34.088",
+    "updated": "2025-09-24T09:54:34.088",
+    "size": 3380,
     "tags": [
       {
-        "tag": "generate",
-        "count": 1
+        "tag": "creation",
+        "count": 2
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/variant_dashboard/_old_README.md",
-    "created": "2025-09-11T17:23:20.795",
-    "updated": "2025-09-11T17:23:20.795",
-    "size": 3118,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/code/LEARNINGS.md",
@@ -558,8 +338,8 @@
     "size": 1809,
     "tags": [
       {
-        "tag": "generate",
-        "count": 1
+        "tag": "creation",
+        "count": 3
       }
     ]
   },
@@ -568,26 +348,36 @@
     "created": "2025-09-11T17:12:49.312",
     "updated": "2025-09-11T16:40:10.443",
     "size": 4880,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/code/src/modules/candidate/readme.md",
-    "created": "2025-09-11T08:51:00.612",
-    "updated": "2025-08-27T08:48:55.881",
-    "size": 19581,
     "tags": [
       {
-        "tag": "ajay",
-        "count": 57
+        "tag": "creation",
+        "count": 2
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/portal/agency_research/company meet /meet_3.md",
-    "created": "2025-09-11T08:51:00.618",
-    "updated": "2025-08-19T14:18:04.103",
-    "size": 4862,
-    "tags": []
+    "path": "/Users/ajaydahal/portal/agency_research/code/src/modules/candidate/readme.md",
+    "created": "2025-11-01T20:33:33.322",
+    "updated": "2025-08-27T08:48:55.881",
+    "size": 19581,
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/portal/agency_research/dev_tools/test_web_frontend/tests/readme.md",
+    "created": "2025-11-01T20:33:33.729",
+    "updated": "2025-09-24T12:08:18.062",
+    "size": 7614,
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 7
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/portal/agency_research/company meet /meet_2.md",
@@ -596,8 +386,8 @@
     "size": 10278,
     "tags": [
       {
-        "tag": "game",
-        "count": 1
+        "tag": "creation",
+        "count": 2
       },
       {
         "tag": "meta",
@@ -606,21 +396,14 @@
     ]
   },
   {
-    "path": "/Users/ajaydahal/portal/agency_research/company meet /meet _1.md",
-    "created": "2025-09-11T08:51:00.618",
-    "updated": "2025-08-14T14:31:11.869",
-    "size": 2921,
-    "tags": []
-  },
-  {
     "path": "/Users/ajaydahal/portal/agency_research/documents/doc.md",
     "created": "2025-09-11T08:51:00.620",
     "updated": "2025-08-22T15:55:45.994",
     "size": 7310,
     "tags": [
       {
-        "tag": "wizard",
-        "count": 1
+        "tag": "creation",
+        "count": 3
       }
     ]
   },
@@ -631,111 +414,7 @@
     "size": 9807,
     "tags": [
       {
-        "tag": "anki",
-        "count": 4
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
-      {
         "tag": "meta",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/portal/agency_research/data_crontacts/share/frontend_data_contracts.v3.md",
-    "created": "2025-09-11T08:51:00.628",
-    "updated": "2025-08-28T10:36:15.059",
-    "size": 13042,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/giveaways/readme.md",
-    "created": "2025-09-11T08:51:57.588",
-    "updated": "2025-04-08T10:48:26.138",
-    "size": 458,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:51:57.650",
-    "updated": "2025-04-08T10:48:26.314",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:51:57.650",
-    "updated": "2025-04-08T10:48:26.314",
-    "size": 5590,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:51:57.672",
-    "updated": "2025-04-08T10:48:26.300",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/src/modules/chat_channels/repository/chat_channel_repo.md",
-    "created": "2025-09-11T08:51:57.680",
-    "updated": "2025-04-08T10:48:26.297",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/reader/lib/src/modules/address/data/repository/address_repo.md",
-    "created": "2025-09-11T08:51:57.683",
-    "updated": "2025-04-08T10:48:26.245",
-    "size": 1775,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/paradise_delievery/source codes/bagmati_app/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:51:58.275",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/paradise_delievery/source codes/bagmati_app/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:51:58.275",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 5586,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/paradise_delievery/source codes/bagmati_app/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:51:58.296",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/paradise_delievery/source codes/bagmati_app/lib/src/modules/chat_channels/repo/chat_channel_repo.md",
-    "created": "2025-09-11T08:51:58.309",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/paradise_delievery/source codes/bagmati_app/lib/src/modules/address/repo/address_repo.md",
-    "created": "2025-09-11T08:51:58.311",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1775,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/plans/drafts/tools/project_activities_visualizer_planner.md",
-    "created": "2025-09-11T08:51:58.443",
-    "updated": "2025-03-28T10:41:12.752",
-    "size": 2093,
-    "tags": [
-      {
-        "tag": "recursive",
         "count": 1
       }
     ]
@@ -747,141 +426,12 @@
     "size": 15352,
     "tags": [
       {
-        "tag": "manifest",
+        "tag": "evolution",
         "count": 1
       },
       {
         "tag": "meta",
         "count": 2
-      },
-      {
-        "tag": "recursive",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/estimates/pricing_summary.md",
-    "created": "2025-09-11T08:51:58.537",
-    "updated": "2025-03-29T21:03:56.349",
-    "size": 4075,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/estimates/refinement.md",
-    "created": "2025-09-11T08:51:58.537",
-    "updated": "2025-03-29T21:00:15.376",
-    "size": 4305,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/estimates/pricing_guideline.md",
-    "created": "2025-09-11T08:51:58.537",
-    "updated": "2025-03-29T21:26:11.809",
-    "size": 7485,
-    "tags": [
-      {
-        "tag": "recursive",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/planning_compoents/implementations/kitchen/README.md",
-    "created": "2025-09-11T08:51:58.574",
-    "updated": "2025-08-28T19:34:52.410",
-    "size": 571,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/documents_analysis/interaction_document.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-05T19:03:21.800",
-    "size": 6749,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/documents_analysis/phase_1_actions/phase_1.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-02T08:50:43.505",
-    "size": 2407,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/documents_analysis/phase_1_actions/phase_1_action_steps.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-02T08:50:12.852",
-    "size": 4278,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/documents_analysis/todo_draft.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-02T08:13:34.190",
-    "size": 2949,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/Kitchen crew.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-01T19:51:09.040",
-    "size": 1546,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/draft.md",
-    "created": "2025-09-11T08:51:58.818",
-    "updated": "2025-05-01T21:16:16.535",
-    "size": 1331,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may 1/share_docs/exclusions.md",
-    "created": "2025-09-11T08:51:58.819",
-    "updated": "2025-03-30T08:13:31.746",
-    "size": 2238,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may11/may11.md",
-    "created": "2025-09-11T08:51:58.819",
-    "updated": "2025-05-13T19:37:44.192",
-    "size": 2454,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may11/reformattted_clients_doc.md",
-    "created": "2025-09-11T08:51:58.819",
-    "updated": "2025-05-02T08:29:37.930",
-    "size": 3421,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/previous_docs/technical_details.md",
-    "created": "2025-09-11T08:51:58.820",
-    "updated": "2025-03-30T08:09:13.748",
-    "size": 1648,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/jun2/details.md",
-    "created": "2025-09-11T08:51:58.821",
-    "updated": "2025-06-04T21:09:53.227",
-    "size": 6938,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 4
       }
     ]
   },
@@ -894,38 +444,8 @@
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may5/agendas.md",
-    "created": "2025-09-11T08:51:58.821",
-    "updated": "2025-05-05T20:08:40.033",
-    "size": 1603,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/may5/may6_plans.md",
-    "created": "2025-09-11T08:51:58.822",
-    "updated": "2025-05-07T20:03:55.373",
-    "size": 950,
-    "tags": [
-      {
-        "tag": "ajay",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/pranit/documents/meetings/aug 28/draft.md",
-    "created": "2025-09-11T08:51:58.822",
-    "updated": "2025-08-28T20:46:10.017",
-    "size": 1959,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/projects/timeline_analyzer/lib/skill/presentation/module_details/sprint.md",
@@ -934,36 +454,8 @@
     "size": 9540,
     "tags": [
       {
-        "tag": "ishowr",
-        "count": 4
-      },
-      {
-        "tag": "rojan",
-        "count": 4
-      },
-      {
-        "tag": "sabin",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/timeline_analyzer/lib/sprint_planner/docs_introduction.md",
-    "created": "2025-09-11T08:51:59.593",
-    "updated": "2025-04-01T19:09:26.407",
-    "size": 4390,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 1
+        "tag": "creation",
+        "count": 7
       }
     ]
   },
@@ -974,32 +466,8 @@
     "size": 21156,
     "tags": [
       {
-        "tag": "rojan",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 9
-      },
-      {
-        "tag": "narayan",
-        "count": 14
-      },
-      {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "recursive",
-        "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 4
       }
     ]
   },
@@ -1010,133 +478,11 @@
     "size": 4744,
     "tags": [
       {
-        "tag": "rojan",
+        "tag": "creation",
         "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 4
       },
       {
         "tag": "meta",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/files/requrement_alignment /appversion_3.0.md",
-    "created": "2025-09-11T08:52:00.080",
-    "updated": "2024-07-21T14:59:47.068",
-    "size": 8856,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/projects/dart_system/backend_admin_panel.md",
-    "created": "2025-09-11T08:52:00.123",
-    "updated": "2025-03-14T22:32:37.066",
-    "size": 4936,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/bagmati_tourism_app/README.md",
-    "created": "2025-09-11T08:52:00.545",
-    "updated": "2025-06-26T09:23:51.996",
-    "size": 2018,
-    "tags": [
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/bagmati_tourism_app/edit_panel/blog_editor.md",
-    "created": "2025-09-11T08:52:00.933",
-    "updated": "2025-06-17T10:33:29.227",
-    "size": 196,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/bagmati_tourism_app/edit_panel/cms_panel.md",
-    "created": "2025-09-11T08:52:00.933",
-    "updated": "2025-06-17T10:33:29.228",
-    "size": 9711,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/board/demo.md",
-    "created": "2025-09-11T08:52:00.951",
-    "updated": "2025-08-11T21:02:01.216",
-    "size": 1687,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/board/epics.md",
-    "created": "2025-09-11T08:52:00.951",
-    "updated": "2025-08-11T08:32:35.167",
-    "size": 2452,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/product/test cases.md",
-    "created": "2025-09-11T08:52:00.997",
-    "updated": "2025-07-12T14:50:26.472",
-    "size": 1225,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/product/destination and navigation/pitch.md",
-    "created": "2025-09-11T08:52:00.997",
-    "updated": "2025-07-12T11:44:04.886",
-    "size": 1476,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/product/hostel/pitch.md",
-    "created": "2025-09-11T08:52:00.997",
-    "updated": "2025-07-14T12:01:22.954",
-    "size": 835,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/product/campaign/introduction.md",
-    "created": "2025-09-11T08:52:00.997",
-    "updated": "2025-07-14T12:18:50.628",
-    "size": 1002,
-    "tags": [
-      {
-        "tag": "game",
         "count": 1
       }
     ]
@@ -1146,7 +492,12 @@
     "created": "2025-09-11T08:52:00.999",
     "updated": "2025-07-03T09:14:17.808",
     "size": 8405,
-    "tags": []
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 1
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/code/v2/justifier/compiled/technical_draft.md",
@@ -1155,50 +506,11 @@
     "size": 10733,
     "tags": [
       {
-        "tag": "narayan",
-        "count": 2
+        "tag": "creation",
+        "count": 1
       },
       {
         "tag": "meta",
-        "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/justifier/lib/objectives/status.md",
-    "created": "2025-09-11T08:52:01.001",
-    "updated": "2025-07-13T21:32:29.923",
-    "size": 4777,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/justifier/lib/documents/technical_draft.md",
-    "created": "2025-09-11T08:52:01.003",
-    "updated": "2025-07-03T09:44:37.744",
-    "size": 7098,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/team/context.md",
-    "created": "2025-09-11T08:52:01.013",
-    "updated": "2025-07-12T12:05:45.359",
-    "size": 1337,
-    "tags": [
-      {
-        "tag": "sabin",
         "count": 1
       }
     ]
@@ -1208,25 +520,10 @@
     "created": "2025-09-11T08:52:01.014",
     "updated": "2025-07-15T14:05:25.474",
     "size": 2998,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/team/generator/lib/plan.md",
-    "created": "2025-09-11T08:52:01.014",
-    "updated": "2025-07-09T09:35:36.987",
-    "size": 1536,
     "tags": [
       {
-        "tag": "ishowr",
+        "tag": "creation",
         "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 2
-      },
-      {
-        "tag": "generate",
-        "count": 2
       }
     ]
   },
@@ -1249,15 +546,19 @@
     "size": 15558,
     "tags": [
       {
-        "tag": "game",
+        "tag": "consciousness",
+        "count": 1
+      },
+      {
+        "tag": "evolution",
+        "count": 11
+      },
+      {
+        "tag": "creation",
         "count": 1
       },
       {
         "tag": "meta",
-        "count": 1
-      },
-      {
-        "tag": "awareness",
         "count": 1
       }
     ]
@@ -1267,14 +568,12 @@
     "created": "2025-09-11T08:52:01.031",
     "updated": "2025-07-25T22:34:46.532",
     "size": 6794,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/meetings/development/tolet/context.md",
-    "created": "2025-09-11T08:52:01.033",
-    "updated": "2025-07-16T08:55:49.043",
-    "size": 2189,
-    "tags": []
+    "tags": [
+      {
+        "tag": "evolution",
+        "count": 1
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/code/v2/meetings/meeting_summary.md",
@@ -1283,55 +582,7 @@
     "size": 20072,
     "tags": [
       {
-        "tag": "ishowr",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 4
-      },
-      {
-        "tag": "aayush",
-        "count": 2
-      },
-      {
-        "tag": "todo",
-        "count": 2
-      },
-      {
-        "tag": "generate",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/meetings/monday_july_14.md",
-    "created": "2025-09-11T08:52:01.034",
-    "updated": "2025-07-15T09:32:24.992",
-    "size": 8956,
-    "tags": [
-      {
-        "tag": "ishowr",
-        "count": 1
-      },
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
+        "tag": "creation",
         "count": 1
       }
     ]
@@ -1343,33 +594,10 @@
     "size": 10696,
     "tags": [
       {
-        "tag": "sabin",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 1
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 2
-      },
-      {
-        "tag": "generate",
+        "tag": "creation",
         "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/meetings/delta_2/meetings/agendas.md",
-    "created": "2025-09-11T08:52:01.036",
-    "updated": "2025-07-30T16:04:03.149",
-    "size": 2870,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/v2/meetings/delta_2/meetings/monday_teem_meet/discussions.md",
@@ -1378,44 +606,10 @@
     "size": 5330,
     "tags": [
       {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 1
-      },
-      {
-        "tag": "aayush",
+        "tag": "creation",
         "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/meetings/delta_2/meetings/hotel_booking.md",
-    "created": "2025-09-11T08:52:01.037",
-    "updated": "2025-08-19T14:32:45.894",
-    "size": 840,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/meetings/delta_2/everything_on_hostel_room_admin.md",
-    "created": "2025-09-11T08:52:01.037",
-    "updated": "2025-07-30T22:32:05.827",
-    "size": 1872,
-    "tags": [
-      {
-        "tag": "aayush",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/stripdoen.md",
-    "created": "2025-09-11T08:52:01.044",
-    "updated": "2025-07-07T17:16:38.832",
-    "size": 912,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/v2/kaha/sprints/documents/draft.md",
@@ -1424,7 +618,7 @@
     "size": 2527,
     "tags": [
       {
-        "tag": "todo",
+        "tag": "creation",
         "count": 1
       }
     ]
@@ -1436,128 +630,20 @@
     "size": 9480,
     "tags": [
       {
-        "tag": "ishowr",
-        "count": 4
-      },
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 6
-      },
-      {
-        "tag": "ajay",
-        "count": 3
-      },
-      {
         "tag": "meta",
         "count": 16
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/hostel_web/dashboard.md",
-    "created": "2025-09-11T08:52:01.287",
-    "updated": "2025-08-27T16:03:44.916",
-    "size": 3179,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/hostel_web/concerns.md",
-    "created": "2025-09-11T08:52:01.287",
-    "updated": "2025-08-29T12:18:38.709",
-    "size": 1054,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/hostel_web/alignment.md",
-    "created": "2025-09-11T08:52:01.287",
-    "updated": "2025-08-29T12:18:26.628",
-    "size": 795,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/hostel_web/aayush.md",
-    "created": "2025-09-11T08:52:01.287",
-    "updated": "2025-08-29T12:18:29.841",
-    "size": 8112,
-    "tags": []
-  },
-  {
     "path": "/Users/ajaydahal/code/v2/kaha/new_modules/guide_module/admin-panel.md",
     "created": "2025-09-11T08:52:01.313",
     "updated": "2025-07-06T08:59:44.384",
     "size": 4909,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/guide_module/mindmap.md",
-    "created": "2025-09-11T08:52:01.313",
-    "updated": "2025-07-05T17:51:58.646",
-    "size": 1887,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/credits/anik.md",
-    "created": "2025-09-11T08:52:01.316",
-    "updated": "2025-08-19T15:42:30.183",
-    "size": 1249,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/credits/ishowr.md",
-    "created": "2025-09-11T08:52:01.316",
-    "updated": "2025-08-18T11:19:34.278",
-    "size": 998,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/credits/documents/brd.md",
-    "created": "2025-09-11T08:52:01.320",
-    "updated": "2025-08-05T15:27:47.682",
-    "size": 6169,
     "tags": [
       {
-        "tag": "game",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/credits/documents/README.md",
-    "created": "2025-09-11T08:52:01.321",
-    "updated": "2025-08-05T09:55:24.547",
-    "size": 5644,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 8
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/v2/kaha/new_modules/credits/documents/api/all.md",
-    "created": "2025-09-11T08:52:01.321",
-    "updated": "2025-08-12T08:28:45.448",
-    "size": 1649,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha-admin-hub/README.md",
-    "created": "2025-09-11T08:52:01.730",
-    "updated": "2025-05-21T17:30:42.153",
-    "size": 5353,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 1
+        "tag": "creation",
+        "count": 2
       }
     ]
   },
@@ -1570,10 +656,6 @@
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 1
       }
     ]
   },
@@ -1584,28 +666,12 @@
     "size": 7877,
     "tags": [
       {
+        "tag": "gemini",
+        "count": 1
+      },
+      {
         "tag": "meta",
         "count": 2
-      },
-      {
-        "tag": "recursive",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/work/clean_code/README.md",
-    "created": "2025-09-11T08:52:01.938",
-    "updated": "2024-09-16T09:19:09.403",
-    "size": 6637,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 3
       }
     ]
   },
@@ -1618,166 +684,8 @@
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 6
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/export_with_history/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:52:02.630",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/export_with_history/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:52:02.630",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 5586,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/export_with_history/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:52:02.653",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/export_with_history/lib/src/modules/chat_channels/repo/chat_channel_repo.md",
-    "created": "2025-09-11T08:52:02.667",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/export_with_history/lib/src/modules/address/repo/address_repo.md",
-    "created": "2025-09-11T08:52:02.670",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1775,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/status/requirement.md",
-    "created": "2025-09-11T08:52:02.756",
-    "updated": "2025-04-02T09:13:16.522",
-    "size": 1811,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/bagmati/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:52:02.994",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/bagmati/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:52:02.994",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 5586,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/bagmati/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:52:03.034",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/bagmati/lib/src/modules/chat_channels/repo/chat_channel_repo.md",
-    "created": "2025-09-11T08:52:03.050",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/archrive/bagmati/bagmati/lib/src/modules/address/repo/address_repo.md",
-    "created": "2025-09-11T08:52:03.052",
-    "updated": "2025-03-26T08:07:32.000",
-    "size": 1775,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/mcp_servers/openapi-mcp/README.md",
-    "created": "2025-09-11T08:52:03.145",
-    "updated": "2025-05-05T20:30:37.942",
-    "size": 13774,
-    "tags": [
-      {
-        "tag": "mcp",
-        "count": 51
-      },
-      {
-        "tag": "generate",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/nginx/readme.md",
-    "created": "2025-09-11T08:52:04.099",
-    "updated": "2024-02-28T14:50:30.346",
-    "size": 2629,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/refactor-modules/kaha/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:52:04.346",
-    "updated": "2024-04-07T22:34:29.803",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/refactor-modules/kaha/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:52:04.346",
-    "updated": "2024-04-07T22:34:29.802",
-    "size": 5586,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/refactor-modules/kaha/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:52:04.360",
-    "updated": "2024-04-07T22:34:29.793",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/refactor-modules/kaha/lib/src/modules/chat_channels/repo/chat_channel_repo.md",
-    "created": "2025-09-11T08:52:04.365",
-    "updated": "2024-04-07T22:34:29.791",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/dev/refactor-modules/kaha/lib/src/modules/address/repo/address_repo.md",
-    "created": "2025-09-11T08:52:04.366",
-    "updated": "2024-04-07T22:34:29.776",
-    "size": 1775,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/paradise_plan/kaha_v4.md",
-    "created": "2025-09-11T08:52:05.474",
-    "updated": "2025-03-25T19:50:39.224",
-    "size": 2038,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/paradise_plan/government_partnership_strategy.md",
-    "created": "2025-09-11T08:52:05.474",
-    "updated": "2025-03-31T09:59:51.944",
-    "size": 2229,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/matrix/paradise_plan/paradise_plan.md",
@@ -1786,46 +694,8 @@
     "size": 18413,
     "tags": [
       {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 7
-      },
-      {
-        "tag": "todo",
-        "count": 6
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/paradise_plan/cms_panel_versioning_plan/mindmap.md",
-    "created": "2025-09-11T08:52:05.476",
-    "updated": "2025-03-31T10:35:39.237",
-    "size": 2673,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/paradise_plan/kaha_v3.md",
-    "created": "2025-09-11T08:52:05.477",
-    "updated": "2025-03-25T19:50:39.224",
-    "size": 1908,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/paradise_plan/cms.md",
-    "created": "2025-09-11T08:52:05.477",
-    "updated": "2025-03-31T09:41:35.781",
-    "size": 4908,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 2
+        "tag": "creation",
+        "count": 3
       }
     ]
   },
@@ -1834,16 +704,9 @@
     "created": "2025-09-11T08:52:05.479",
     "updated": "2025-02-22T14:38:54.349",
     "size": 25469,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/plan/2draft_first_implementation.md",
-    "created": "2025-09-11T08:52:05.479",
-    "updated": "2025-02-22T14:36:52.140",
-    "size": 9218,
     "tags": [
       {
-        "tag": "generate",
+        "tag": "consciousness",
         "count": 2
       }
     ]
@@ -1855,20 +718,8 @@
     "size": 6984,
     "tags": [
       {
-        "tag": "game",
+        "tag": "gemini",
         "count": 1
-      },
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 2
-      },
-      {
-        "tag": "todo",
-        "count": 15
       }
     ]
   },
@@ -1879,64 +730,8 @@
     "size": 4587,
     "tags": [
       {
-        "tag": "wizard",
-        "count": 1
-      },
-      {
-        "tag": "game",
-        "count": 11
-      },
-      {
-        "tag": "prashun",
-        "count": 2
-      },
-      {
-        "tag": "rojan",
-        "count": 2
-      },
-      {
-        "tag": "sabin",
+        "tag": "creation",
         "count": 3
-      },
-      {
-        "tag": "todo",
-        "count": 7
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/planning/docs/wizard.md",
-    "created": "2025-09-11T08:52:05.481",
-    "updated": "2025-03-17T09:27:31.296",
-    "size": 3700,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/planning/profiles/characters/narayan.md",
-    "created": "2025-09-11T08:52:05.483",
-    "updated": "2025-04-04T20:27:26.864",
-    "size": 3601,
-    "tags": [
-      {
-        "tag": "manifest",
-        "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 3
-      },
-      {
-        "tag": "todo",
-        "count": 1
       }
     ]
   },
@@ -1947,44 +742,18 @@
     "size": 6952,
     "tags": [
       {
+        "tag": "evolution",
+        "count": 1
+      },
+      {
         "tag": "meta",
         "count": 1
       },
       {
-        "tag": "awareness",
-        "count": 1
-      },
-      {
-        "tag": "generate",
+        "tag": "philosophy",
         "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/meaning/catapol.md",
-    "created": "2025-09-11T08:52:05.487",
-    "updated": "2025-04-12T20:16:25.026",
-    "size": 355,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/code_analyzer/thought.md",
-    "created": "2025-09-11T08:52:05.555",
-    "updated": "2025-02-23T21:11:43.070",
-    "size": 5697,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/code_analyzer/groq.md",
-    "created": "2025-09-11T08:52:05.555",
-    "updated": "2025-02-23T21:45:49.619",
-    "size": 9284,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/matrix/code_analyzer/analysis_reports.md",
@@ -1995,6 +764,10 @@
       {
         "tag": "meta",
         "count": 3
+      },
+      {
+        "tag": "philosophy",
+        "count": 2
       }
     ]
   },
@@ -2005,59 +778,7 @@
     "size": 9273,
     "tags": [
       {
-        "tag": "generate",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/matrix/kaha/lore.md",
-    "created": "2025-09-11T08:52:05.561",
-    "updated": "2025-04-15T07:33:56.773",
-    "size": 2446,
-    "tags": [
-      {
-        "tag": "manifest",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/sprints/may12.md",
-    "created": "2025-09-11T08:52:05.624",
-    "updated": "2025-05-12T12:45:35.901",
-    "size": 4575,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/website/v2_admin/docs/Features.md",
-    "created": "2025-09-11T08:52:05.655",
-    "updated": "2025-03-30T08:52:23.258",
-    "size": 7659,
-    "tags": [
-      {
-        "tag": "ajay",
-        "count": 16
-      },
-      {
-        "tag": "generate",
-        "count": 3
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/website/v2_admin/naarjun/project_scope.md",
-    "created": "2025-09-11T08:52:05.655",
-    "updated": "2025-03-30T10:57:22.029",
-    "size": 1594,
-    "tags": [
-      {
-        "tag": "generate",
+        "tag": "creation",
         "count": 1
       }
     ]
@@ -2071,26 +792,20 @@
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/website/kaha-admin-hub/cms_panel_versioning_plan/mindmap.md",
-    "created": "2025-09-11T08:52:05.677",
-    "updated": "2025-03-31T11:54:39.161",
-    "size": 2673,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/kaha/kaha_main_server/cli/booking_requirements/booking_module_poc_dart/plannings/1_readme_workflow_plan.md",
     "created": "2025-09-11T08:52:06.576",
     "updated": "2025-03-21T11:03:03.683",
     "size": 3518,
-    "tags": []
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 1
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/code/kaha/kaha_main_server/cli/booking_requirements/workflow.md",
@@ -2099,7 +814,7 @@
     "size": 8381,
     "tags": [
       {
-        "tag": "ajay",
+        "tag": "creation",
         "count": 1
       }
     ]
@@ -2113,10 +828,6 @@
       {
         "tag": "meta",
         "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 6
       }
     ]
   },
@@ -2127,71 +838,10 @@
     "size": 9955,
     "tags": [
       {
-        "tag": "todo",
-        "count": 5
+        "tag": "creation",
+        "count": 1
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/a_restructured/tolet/docs/technical-doc.md",
-    "created": "2025-09-11T08:52:07.580",
-    "updated": "2025-05-03T19:33:54.319",
-    "size": 3035,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/a_restructured/home_qr/plan.md",
-    "created": "2025-09-11T08:52:07.668",
-    "updated": "2025-05-03T19:33:54.119",
-    "size": 2143,
-    "tags": [
-      {
-        "tag": "todo",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/giveaways/readme.md",
-    "created": "2025-09-11T08:52:07.683",
-    "updated": "2025-05-03T19:33:54.356",
-    "size": 458,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/src/modules/documentation/docs/example2.md",
-    "created": "2025-09-11T08:52:07.734",
-    "updated": "2025-02-21T12:49:12.942",
-    "size": 3883,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/src/modules/documentation/docs/example1.md",
-    "created": "2025-09-11T08:52:07.734",
-    "updated": "2025-04-26T08:19:10.616",
-    "size": 5590,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/src/modules/chat_messages/repo/chat_message_repo.md",
-    "created": "2025-09-11T08:52:07.757",
-    "updated": "2025-02-21T12:49:12.919",
-    "size": 994,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/src/modules/chat_channels/repository/chat_channel_repo.md",
-    "created": "2025-09-11T08:52:07.768",
-    "updated": "2025-05-03T19:33:54.473",
-    "size": 1357,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/flutter/kaha_revamp_origianal/lib/src/modules/address/data/repository/address_repo.md",
-    "created": "2025-09-11T08:52:07.770",
-    "updated": "2025-05-03T19:33:54.443",
-    "size": 1775,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/code/kaha/documents/plans/core/revised_sprint.md",
@@ -2200,8 +850,8 @@
     "size": 7311,
     "tags": [
       {
-        "tag": "narayan",
-        "count": 1
+        "tag": "creation",
+        "count": 4
       }
     ]
   },
@@ -2212,52 +862,8 @@
     "size": 7096,
     "tags": [
       {
-        "tag": "prashun",
-        "count": 4
-      },
-      {
-        "tag": "rojan",
-        "count": 14
-      },
-      {
-        "tag": "sabin",
-        "count": 8
-      },
-      {
-        "tag": "ajay",
-        "count": 13
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/plans/core/sprint_core.md",
-    "created": "2025-09-11T08:52:09.438",
-    "updated": "2025-04-01T15:46:40.484",
-    "size": 7220,
-    "tags": [
-      {
-        "tag": "ishowr",
-        "count": 1
-      },
-      {
-        "tag": "prashun",
-        "count": 2
-      },
-      {
-        "tag": "rojan",
-        "count": 2
-      },
-      {
-        "tag": "sabin",
-        "count": 3
-      },
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 1
+        "tag": "creation",
+        "count": 7
       }
     ]
   },
@@ -2266,7 +872,12 @@
     "created": "2025-09-11T08:52:09.449",
     "updated": "2025-05-11T09:08:26.206",
     "size": 3777,
-    "tags": []
+    "tags": [
+      {
+        "tag": "creation",
+        "count": 2
+      }
+    ]
   },
   {
     "path": "/Users/ajaydahal/code/kaha/documents/decisions/plans/whats_business_saying.md",
@@ -2275,201 +886,22 @@
     "size": 19017,
     "tags": [
       {
-        "tag": "game",
-        "count": 1
-      },
-      {
-        "tag": "ishowr",
-        "count": 5
-      },
-      {
-        "tag": "rojan",
-        "count": 3
-      },
-      {
-        "tag": "sabin",
-        "count": 2
-      },
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 3
-      },
-      {
-        "tag": "todo",
-        "count": 11
-      },
-      {
-        "tag": "generate",
+        "tag": "creation",
         "count": 2
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/plans/rooms/ehnancements.md",
-    "created": "2025-09-11T08:52:09.515",
-    "updated": "2025-05-20T12:12:05.208",
-    "size": 671,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/plans/rooms/concerns.md",
-    "created": "2025-09-11T08:52:09.516",
-    "updated": "2025-05-20T12:12:10.848",
-    "size": 2199,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/plans/designs.md",
-    "created": "2025-09-11T08:52:09.516",
-    "updated": "2025-04-16T10:18:01.632",
-    "size": 6325,
+    "path": "/Users/ajaydahal/shared/gamifier/reports/test_state_report.md",
+    "created": "2025-09-17T21:08:31.259",
+    "updated": "2025-09-17T21:08:31.259",
+    "size": 3380,
     "tags": [
       {
-        "tag": "narayan",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/meetings/roam/integration/meet_summary/may26_roam.md",
-    "created": "2025-09-11T08:52:09.523",
-    "updated": "2025-05-27T08:50:02.076",
-    "size": 3689,
-    "tags": [
-      {
-        "tag": "ajay",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/meetings/roam/meeting_april_3_rubin_sir/agenda.md",
-    "created": "2025-09-11T08:52:09.596",
-    "updated": "2025-04-03T17:59:50.635",
-    "size": 2622,
-    "tags": [
-      {
-        "tag": "ajay",
-        "count": 2
-      },
-      {
-        "tag": "narayan",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/meetings/roam/meeting_March_2/invite.md",
-    "created": "2025-09-11T08:52:09.596",
-    "updated": "2025-02-26T18:19:05.925",
-    "size": 2216,
-    "tags": [
-      {
-        "tag": "narayan",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/decisions/meetings/kaha/tech_requiremnts.md",
-    "created": "2025-09-11T08:52:09.597",
-    "updated": "2025-04-07T23:16:26.701",
-    "size": 3103,
-    "tags": [
-      {
-        "tag": "ishowr",
-        "count": 1
-      },
-      {
-        "tag": "prashun",
-        "count": 1
-      },
-      {
-        "tag": "rojan",
-        "count": 1
-      },
-      {
-        "tag": "sabin",
-        "count": 2
-      },
-      {
-        "tag": "todo",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/topics/bhadra_plans.md",
-    "created": "2025-09-11T08:52:09.598",
-    "updated": "2025-06-02T13:31:33.275",
-    "size": 2659,
-    "tags": [
-      {
-        "tag": "prashun",
-        "count": 2
-      },
-      {
-        "tag": "sabin",
-        "count": 2
-      },
-      {
-        "tag": "ajay",
+        "tag": "creation",
         "count": 2
       }
     ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/documents/topics/summary.md",
-    "created": "2025-09-11T08:52:09.598",
-    "updated": "2025-06-02T12:19:38.036",
-    "size": 4907,
-    "tags": [
-      {
-        "tag": "prashun",
-        "count": 2
-      },
-      {
-        "tag": "rojan",
-        "count": 2
-      },
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "narayan",
-        "count": 1
-      },
-      {
-        "tag": "todo",
-        "count": 2
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/code/kaha/concerns/concerns.md",
-    "created": "2025-09-11T08:52:09.598",
-    "updated": "2025-06-22T19:58:00.936",
-    "size": 1110,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/tourism_project/status.md",
-    "created": "2025-09-11T08:53:12.313",
-    "updated": "2025-07-31T12:18:13.854",
-    "size": 843,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/cole/notes.md",
-    "created": "2025-09-11T08:53:14.034",
-    "updated": "2025-08-16T23:38:51.599",
-    "size": 1155,
-    "tags": []
   },
   {
     "path": "/Users/ajaydahal/v5/simulation/simv3_kaha/workspace/context/projects/job-portal/PRD.md",
@@ -2477,14 +909,6 @@
     "updated": "2025-08-28T10:35:39.719",
     "size": 9807,
     "tags": [
-      {
-        "tag": "anki",
-        "count": 4
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
       {
         "tag": "meta",
         "count": 1
@@ -2498,12 +922,16 @@
     "size": 8312,
     "tags": [
       {
-        "tag": "meta",
-        "count": 3
+        "tag": "evolution",
+        "count": 1
       },
       {
-        "tag": "generate",
-        "count": 4
+        "tag": "creation",
+        "count": 1
+      },
+      {
+        "tag": "meta",
+        "count": 3
       }
     ]
   },
@@ -2512,25 +940,10 @@
     "created": "2025-09-11T08:53:14.059",
     "updated": "2025-08-26T20:31:53.358",
     "size": 8151,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/v5/simulation/resource/1_6/phase1_6.md",
-    "created": "2025-09-11T08:53:14.167",
-    "updated": "2025-08-24T14:53:57.904",
-    "size": 5541,
     "tags": [
       {
-        "tag": "game",
+        "tag": "evolution",
         "count": 3
-      },
-      {
-        "tag": "ajay",
-        "count": 13
-      },
-      {
-        "tag": "todo",
-        "count": 1
       }
     ]
   },
@@ -2541,76 +954,44 @@
     "size": 3953,
     "tags": [
       {
-        "tag": "game",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/v5/simulation/sim/docs/skills_xp_system.md",
-    "created": "2025-09-11T08:53:14.172",
-    "updated": "2025-08-24T17:45:39.619",
-    "size": 6405,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 1
-      },
-      {
-        "tag": "awareness",
-        "count": 5
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/v4/archon/Archon/PRPs/templates/prp-base.md",
-    "created": "2025-09-11T08:53:16.479",
-    "updated": "2025-08-15T20:06:01.795",
-    "size": 10161,
-    "tags": [
-      {
-        "tag": "mcp",
-        "count": 16
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/v4/archon/Archon/original_archon/README.md",
-    "created": "2025-09-11T08:53:16.504",
-    "updated": "2025-08-23T10:06:03.583",
-    "size": 13794,
-    "tags": [
-      {
-        "tag": "mcp",
-        "count": 28
-      },
-      {
-        "tag": "meta",
-        "count": 1
-      },
-      {
-        "tag": "generate",
+        "tag": "evolution",
         "count": 2
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/v4/archon/Archon/original_archon/iterations/v3-mcp-support/README.md",
-    "created": "2025-09-11T08:53:16.512",
-    "updated": "2025-08-23T10:06:03.587",
-    "size": 7034,
+    "path": "/Users/ajaydahal/v4/archon/Archon/PRPs/templates/prp_base.md",
+    "created": "2025-09-21T20:36:23.724",
+    "updated": "2025-09-21T20:36:23.724",
+    "size": 10161,
     "tags": [
       {
-        "tag": "mcp",
-        "count": 28
-      },
+        "tag": "creation",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/v4/archon/Archon/AGENTS.md",
+    "created": "2025-09-21T20:44:12.318",
+    "updated": "2025-09-21T20:44:12.318",
+    "size": 16111,
+    "tags": [
       {
         "tag": "meta",
-        "count": 1
-      },
+        "count": 3
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/v4/archon/Archon/CLAUDE.md",
+    "created": "2025-09-21T20:44:12.318",
+    "updated": "2025-09-21T20:44:12.318",
+    "size": 17271,
+    "tags": [
       {
-        "tag": "generate",
-        "count": 4
+        "tag": "meta",
+        "count": 3
       }
     ]
   },
@@ -2621,63 +1002,52 @@
     "size": 28223,
     "tags": [
       {
-        "tag": "game",
-        "count": 1
+        "tag": "meta",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/spinoiza/docs/PROJECT_STATUS.md",
+    "created": "2025-10-31T22:39:34.705",
+    "updated": "2025-10-31T22:39:34.705",
+    "size": 15829,
+    "tags": [
+      {
+        "tag": "evolution",
+        "count": 2
       },
       {
-        "tag": "framing",
-        "count": 2
+        "tag": "creation",
+        "count": 1
       },
       {
         "tag": "meta",
-        "count": 8
-      },
+        "count": 9
+      }
+    ]
+  },
+  {
+    "path": "/Users/ajaydahal/the calender/pm/job_portal/docs/readme_web.md",
+    "created": "2025-09-21T00:21:10.201",
+    "updated": "2025-09-16T13:16:12.707",
+    "size": 1335,
+    "tags": [
       {
-        "tag": "awareness",
-        "count": 7
-      },
-      {
-        "tag": "generate",
+        "tag": "creation",
         "count": 1
       }
     ]
   },
   {
-    "path": "/Users/ajaydahal/v4/observatory-mindscape/STATUS.md",
-    "created": "2025-09-11T08:53:16.522",
-    "updated": "2025-08-19T22:56:37.084",
-    "size": 3616,
+    "path": "/Users/ajaydahal/the calender/pm/job_portal/docs/reamde_app.md",
+    "created": "2025-09-21T00:21:10.191",
+    "updated": "2025-09-14T13:52:21.717",
+    "size": 2399,
     "tags": [
       {
-        "tag": "wizard",
-        "count": 3
-      },
-      {
-        "tag": "todo",
+        "tag": "creation",
         "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/v4/knowlede_graph/plans.md",
-    "created": "2025-09-11T08:53:18.689",
-    "updated": "2025-08-21T21:53:30.620",
-    "size": 2924,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/v4/journal.md",
-    "created": "2025-09-11T08:53:18.721",
-    "updated": "2025-08-17T13:01:58.670",
-    "size": 4033,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 1
-      },
-      {
-        "tag": "framing",
-        "count": 2
       }
     ]
   },
@@ -2688,87 +1058,12 @@
     "size": 1650,
     "tags": [
       {
-        "tag": "game",
-        "count": 3
-      },
-      {
-        "tag": "mcp",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/the calender/mcp/NOTE.md",
-    "created": "2025-09-13T21:43:17.321",
-    "updated": "2025-09-13T21:43:17.321",
-    "size": 1697,
-    "tags": [
-      {
-        "tag": "game",
+        "tag": "evolution",
         "count": 1
       },
       {
-        "tag": "mcp",
-        "count": 9
-      },
-      {
-        "tag": "todo",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/the calender/mcp/reports/mcp0_weekly_report-2025-09-13.md",
-    "created": "2025-09-13T21:28:20.735",
-    "updated": "2025-09-13T21:28:20.735",
-    "size": 2157,
-    "tags": [
-      {
-        "tag": "game",
-        "count": 1
-      },
-      {
-        "tag": "mcp",
-        "count": 21
-      },
-      {
-        "tag": "generate",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/the calender/ .md",
-    "created": "2025-09-13T20:34:18.384",
-    "updated": "2025-09-13T20:25:05.876",
-    "size": 186,
-    "tags": []
-  },
-  {
-    "path": "/Users/ajaydahal/deployments/todos.md",
-    "created": "2025-09-13T13:13:29.777",
-    "updated": "2025-09-13T13:13:29.776",
-    "size": 3391,
-    "tags": [
-      {
-        "tag": "generate",
-        "count": 7
-      }
-    ]
-  },
-  {
-    "path": "/Users/ajaydahal/deployments/steps.md",
-    "created": "2025-09-13T13:03:56.434",
-    "updated": "2025-09-13T13:03:56.432",
-    "size": 8128,
-    "tags": [
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "generate",
-        "count": 16
+        "tag": "creation",
+        "count": 2
       }
     ]
   },
@@ -2779,24 +1074,12 @@
     "size": 2956,
     "tags": [
       {
-        "tag": "game",
+        "tag": "creation",
         "count": 1
-      },
-      {
-        "tag": "ajay",
-        "count": 1
-      },
-      {
-        "tag": "framing",
-        "count": 8
       },
       {
         "tag": "meta",
         "count": 2
-      },
-      {
-        "tag": "generate",
-        "count": 1
       }
     ]
   },
@@ -2806,14 +1089,6 @@
     "updated": "2025-09-07T18:05:17.442",
     "size": 11395,
     "tags": [
-      {
-        "tag": "anki",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
       {
         "tag": "meta",
         "count": 1
@@ -2827,14 +1102,6 @@
     "size": 11395,
     "tags": [
       {
-        "tag": "anki",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
-      {
         "tag": "meta",
         "count": 1
       }
@@ -2847,10 +1114,6 @@
     "size": 4416,
     "tags": [
       {
-        "tag": "anki",
-        "count": 1
-      },
-      {
         "tag": "meta",
         "count": 1
       }
@@ -2862,14 +1125,6 @@
     "updated": "2025-09-07T21:37:47.197",
     "size": 11395,
     "tags": [
-      {
-        "tag": "anki",
-        "count": 3
-      },
-      {
-        "tag": "aayush",
-        "count": 1
-      },
       {
         "tag": "meta",
         "count": 1

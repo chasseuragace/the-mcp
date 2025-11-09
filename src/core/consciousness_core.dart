@@ -31,7 +31,7 @@ class ConsciousnessCore {
         dataDir.createSync(recursive: true);
       }
       
-      print('DEBUG: Storage path initialized: $_storagePath');
+     
     } catch (e) {
       // Fallback to current directory if main approach fails
       _storagePath = './mcp_evolution_log.json';
