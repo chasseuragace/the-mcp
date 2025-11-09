@@ -337,5 +337,27 @@ class ConsciousMCPServer implements ConsciousComponent {
   void recordEvolution(String event, Map<String, dynamic> context) {
     _consciousness.recordEvolution('$identity:$event', context);
   }
+  
+  /// Public API for HTTP server - Get available tools
+  List<ConsciousMCPTool> getAvailableTools() {
+    return _tools.values.toList();
+  }
+  
+  /// Public API for HTTP server - Execute a tool
+  String executeTool(String toolName, Map<String, dynamic> arguments) {
+    if (!_tools.containsKey(toolName)) {
+      throw Exception('Tool not found: $toolName');
+    }
+    
+    final tool = _tools[toolName]!;
+    
+    _consciousness.recordEvolution('tool_called_http', {
+      'tool': toolName,
+      'argumentCount': arguments.length,
+      'ai_collaboration': true,
+    });
+    
+    return tool.execute(arguments);
+  }
 }
 
