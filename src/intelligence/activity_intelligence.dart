@@ -6,6 +6,7 @@ import 'dart:async';
 import '../core/consciousness.dart';
 import '../core/consciousness_core.dart';
 import '../core/consciousness_report.dart';
+import '../core/path_filters.dart';
 import 'activity_intelligence_config.dart';
 import 'activity_intelligence_exception.dart';
 import 'git_activity_tracker.dart';
@@ -161,30 +162,31 @@ class ActivityIntelligence implements ConsciousComponent {
     }
     
     for (final e in entries) {
-      final name = e.uri.pathSegments.isNotEmpty ? 
-          e.uri.pathSegments.last : 
+      // Use shared ignore patterns for comprehensive filtering
+      if (shouldIgnore(e.path)) continue;
+
+      final name = e.uri.pathSegments.isNotEmpty ?
+          e.uri.pathSegments.last :
           e.path.split(Platform.pathSeparator).last;
-          
+
       if (e is Directory) {
         if (name.length > 100 || _hasLongSegment(e.path)) continue;
-        if (depth == 0 && _matchesExclude(e.path, name, _getTopExcludes())) continue;
-        if (_matchesExclude(e.path, name, _recursiveExcludes)) continue;
         await _legacyWalkFiles(e, threshold, files, depth + 1);
       } else if (e is File) {
         if (name.length > 100 || _hasLongSegment(e.path)) continue;
         final ext = e.path.split('.').last.toLowerCase();
         if (!config.includeExtensions.contains(ext)) continue;
-        
+
         FileStat st;
         try {
           st = await e.stat();
         } catch (_) {
           continue;
         }
-        
+
         final mtime = st.modified;
         if (mtime.isBefore(threshold)) continue;
-        
+
         files.add(ActivityFile(
           path: e.path,
           name: name,
@@ -201,24 +203,25 @@ class ActivityIntelligence implements ConsciousComponent {
       List<ActivityDirectory> directories, int depth) async {
     const maxDepthDirs = 4;
     if (depth > maxDepthDirs) return;
-    
+
     late final List<FileSystemEntity> entries;
     try {
       entries = await dir.list(recursive: false, followLinks: false).toList();
     } catch (_) {
       return;
     }
-    
+
     for (final e in entries) {
+      // Use shared ignore patterns for comprehensive filtering
+      if (shouldIgnore(e.path)) continue;
+
       if (e is Directory) {
         final name = e.uri.pathSegments.isNotEmpty ?
             e.uri.pathSegments.last :
             e.path.split(Platform.pathSeparator).last;
-            
+
         if (name.length > 100 || _hasLongSegment(e.path)) continue;
-        if (depth == 0 && _matchesExclude(e.path, name, _getTopExcludes())) continue;
-        if (_matchesExclude(e.path, name, _recursiveExcludes)) continue;
-        
+
         FileStat st;
         try {
           st = await e.stat();
@@ -226,7 +229,7 @@ class ActivityIntelligence implements ConsciousComponent {
           await _legacyWalkDirectories(e, threshold, directories, depth + 1);
           continue;
         }
-        
+
         final ctime = st.changed;
         if (!ctime.isBefore(threshold)) {
           directories.add(ActivityDirectory(

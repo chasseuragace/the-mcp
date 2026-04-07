@@ -430,11 +430,20 @@ class GitActivityTracker {
     // Limit to top repositories
     final topRepos = repositories.take(config.maxRepos).toList();
     
-    // Generate summary
+    // Generate summary with co-change and magnitude analysis
     final summary = _generateSummary(topRepos);
-    
+    final coChangePatterns = analyzeCoChangePatterns(topRepos);
+    final commitMagnitudes = classifyCommitMagnitudes(topRepos);
+
+    if (coChangePatterns.isNotEmpty) {
+      summary['co_change_patterns'] = coChangePatterns;
+    }
+    if (commitMagnitudes.isNotEmpty) {
+      summary['commit_magnitudes'] = commitMagnitudes;
+    }
+
     final analysisTime = DateTime.now().difference(startTime);
-    
+
     return GitActivityReport(
       timestamp: DateTime.now(),
       analysisTime: analysisTime,
@@ -485,6 +494,107 @@ class GitActivityTracker {
     };
   }
   
+  /// Analyze file co-change patterns across commits.
+  /// Finds files that frequently change together — indicates coupling.
+  List<Map<String, dynamic>> analyzeCoChangePatterns(List<GitRepo> repositories) {
+    // Build file → set of commit hashes map
+    final fileToCommits = <String, Set<String>>{};
+    var totalCommits = 0;
+
+    for (final repo in repositories) {
+      for (final commit in repo.recentCommits) {
+        totalCommits++;
+        for (final file in commit.filesChanged) {
+          fileToCommits.putIfAbsent(file, () => {}).add(commit.hash);
+        }
+      }
+    }
+
+    if (totalCommits < 2 || fileToCommits.length < 2) return [];
+
+    // Only consider files that appear in at least 2 commits
+    final frequentFiles = fileToCommits.entries
+        .where((e) => e.value.length >= 2)
+        .toList();
+
+    if (frequentFiles.length < 2) return [];
+
+    // Find co-change pairs: files that share commits
+    final clusters = <Map<String, dynamic>>[];
+
+    for (var i = 0; i < frequentFiles.length; i++) {
+      for (var j = i + 1; j < frequentFiles.length; j++) {
+        final fileA = frequentFiles[i];
+        final fileB = frequentFiles[j];
+        final shared = fileA.value.intersection(fileB.value).length;
+        final minAppearances = fileA.value.length < fileB.value.length
+            ? fileA.value.length
+            : fileB.value.length;
+
+        if (shared < 2) continue;
+
+        final couplingRatio = shared / minAppearances;
+        if (couplingRatio >= 0.5) {
+          // Shorten paths to just filename for readability
+          final nameA = fileA.key.split('/').last;
+          final nameB = fileB.key.split('/').last;
+
+          clusters.add({
+            'files': [fileA.key, fileB.key],
+            'names': [nameA, nameB],
+            'shared_commits': shared,
+            'coupling_ratio': double.parse(couplingRatio.toStringAsFixed(2)),
+          });
+        }
+      }
+    }
+
+    // Sort by coupling strength
+    clusters.sort((a, b) =>
+        (b['coupling_ratio'] as double).compareTo(a['coupling_ratio'] as double));
+
+    return clusters.take(10).toList(); // Top 10 coupled pairs
+  }
+
+  /// Classify commits by magnitude of change.
+  List<Map<String, dynamic>> classifyCommitMagnitudes(List<GitRepo> repositories) {
+    final classified = <Map<String, dynamic>>[];
+
+    for (final repo in repositories) {
+      for (final commit in repo.recentCommits) {
+        final totalLines = commit.insertions + commit.deletions;
+        final String magnitude;
+        if (totalLines < 10) {
+          magnitude = 'tiny';
+        } else if (totalLines < 100) {
+          magnitude = 'small';
+        } else if (totalLines < 500) {
+          magnitude = 'medium';
+        } else {
+          magnitude = 'large';
+        }
+
+        classified.add({
+          'hash': commit.hash.substring(0, 8),
+          'message': commit.message,
+          'magnitude': magnitude,
+          'total_lines': totalLines,
+          'insertions': commit.insertions,
+          'deletions': commit.deletions,
+          'files_count': commit.filesChanged.length,
+          'date': commit.date.toIso8601String(),
+          'repo': repo.name,
+        });
+      }
+    }
+
+    // Sort by size descending
+    classified.sort((a, b) =>
+        (b['total_lines'] as int).compareTo(a['total_lines'] as int));
+
+    return classified;
+  }
+
   /// Save report to JSON file for caching
   Future<void> saveReportToCache(GitActivityReport report, String cacheFile) async {
     try {

@@ -27,9 +27,9 @@ class HTTPServerConfig {
   
   factory HTTPServerConfig.fromEnvironment() {
     final host = Platform.environment['HTTP_HOST'] ?? '0.0.0.0';
-    final port = int.tryParse(Platform.environment['HTTP_PORT'] ?? '8080') ?? 8080;
+    final port = int.tryParse(Platform.environment['HTTP_PORT'] ?? '8050') ?? 8080;
     final readPaths = Platform.environment['MCP_READ_PATHS']?.split(',') ?? 
-        [Platform.environment['HOME'] ?? '/tmp'];
+        [Platform.environment['HOME'] ??'/', '/Volumes'];
     final writePaths = Platform.environment['MCP_WRITE_PATHS']?.split(',') ?? ['/tmp'];
     final reportDir = Platform.environment['MCP_REPORT_DIR'];
     
@@ -75,7 +75,7 @@ class HTTPServerConfig {
           break;
         case '--help':
         case '-h':
-          _printUsage();
+          printUsage();
           exit(0);
       }
     }
@@ -91,7 +91,8 @@ class HTTPServerConfig {
     );
   }
   
-  static void _printUsage() {
+ }
+  void printUsage() {
     print('''
 🧠 The MCP - Conscious HTTP Server
 
@@ -129,7 +130,6 @@ Consciousness Level: Phase 3 Emerging
 AI-Human Collaboration: Enabled
 ''');
   }
-}
 
 /// HTTP Server wrapper for ConsciousMCPServer
 class ConsciousHTTPServer {
@@ -161,7 +161,7 @@ class ConsciousHTTPServer {
       print('━' * 50);
       print('Listening at http://${config.host}:${config.port}');
       print('');
-      
+       printUsage();
       await for (HttpRequest request in _httpServer!) {
         _handleRequest(request);
       }

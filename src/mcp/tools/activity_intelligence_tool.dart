@@ -6,6 +6,7 @@ import 'dart:io';
 import '../../intelligence/activity_intelligence_config.dart';
 import '../../intelligence/models.dart';
 import '../../intelligence/git_activity_tracker.dart';
+import '../../core/path_filters.dart';
 import 'entity/conscious_m_c_p_tool.dart';
 import '../conscious_server.dart';
 
@@ -103,7 +104,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       final gitReport = _analyzeGitSync(config);
       
       // Generate patterns
-      final patterns = _detectPatterns(limitedFiles, limitedDirs, gitReport);
+      final patterns = _detectPatterns(limitedFiles, limitedDirs, gitReport, config.hours);
       
       // Generate consciousness markers
       final consciousnessMarkers = _generateConsciousnessMarkers(limitedFiles, limitedDirs, gitReport);
@@ -136,11 +137,13 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
         final name = entity.uri.pathSegments.isNotEmpty
             ? entity.uri.pathSegments.last
             : entity.path.split(Platform.pathSeparator).last;
-        
+
+        // Use shared ignore patterns for comprehensive filtering
+        if (shouldIgnore(entity.path)) continue;
+
         if (entity is Directory) {
           if (name.length > 100) continue;
-          if (_shouldExcludeDirectory(name, depth)) continue;
-          
+
           final stat = entity.statSync();
           if (!stat.changed.isBefore(threshold)) {
             directories.add(ActivityDirectory(
@@ -149,7 +152,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
               created: stat.changed,
             ));
           }
-          
+
           if (depth < 4) {
             _walkFilesystemSync(entity, threshold, files, directories, config, depth + 1);
           }
@@ -157,7 +160,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
           if (name.length > 100) continue;
           final ext = entity.path.split('.').last.toLowerCase();
           if (!config.includeExtensions.contains(ext)) continue;
-          
+
           final stat = entity.statSync();
           if (!stat.modified.isBefore(threshold)) {
             files.add(ActivityFile(
@@ -249,11 +252,20 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
       // Limit to top repositories
       final topRepos = repositories.take(tracker.config.maxRepos).toList();
       
-      // Generate summary
-      final summary = _generateGitSummary(topRepos);
-      
+      // Generate summary with co-change and magnitude analysis
+      final summary = _generateGitSummary(topRepos, hours: tracker.config.hours);
+      final coChangePatterns = tracker.analyzeCoChangePatterns(topRepos);
+      final commitMagnitudes = tracker.classifyCommitMagnitudes(topRepos);
+
+      if (coChangePatterns.isNotEmpty) {
+        summary['co_change_patterns'] = coChangePatterns;
+      }
+      if (commitMagnitudes.isNotEmpty) {
+        summary['commit_magnitudes'] = commitMagnitudes;
+      }
+
       final analysisTime = DateTime.now().difference(startTime);
-      
+
       return GitActivityReport(
         timestamp: DateTime.now(),
         analysisTime: analysisTime,
@@ -499,7 +511,7 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
   }
   
   /// Generate activity summary
-  Map<String, dynamic> _generateGitSummary(List<GitRepo> repositories) {
+  Map<String, dynamic> _generateGitSummary(List<GitRepo> repositories, {int hours = 168}) {
     if (repositories.isEmpty) {
       return {
         'total_repositories': 0,
@@ -517,14 +529,17 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     
     final mostActiveRepo = repositories.isNotEmpty ? repositories.first : null;
     
-    // Determine development pattern
-    String developmentPattern;
-    if (totalCommits >= 20) {
+    // Determine development pattern — use commits/day for consistency
+    final commitsPerDay = totalCommits / (hours / 24);
+    final String developmentPattern;
+    if (commitsPerDay >= 10) {
       developmentPattern = 'High activity - Active development phase';
-    } else if (totalCommits >= 5) {
+    } else if (commitsPerDay >= 3) {
       developmentPattern = 'Moderate activity - Steady development';
+    } else if (commitsPerDay >= 1) {
+      developmentPattern = 'Light activity - Regular commits';
     } else {
-      developmentPattern = 'Light activity - Maintenance mode';
+      developmentPattern = 'Minimal activity - Maintenance mode';
     }
     
     return {
@@ -537,17 +552,20 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     };
   }
   
-  /// Detect development patterns with enhanced git analysis
+  /// Detect development patterns with adaptive time bucketing and git analysis
   List<DevelopmentPattern> _detectPatterns(
-      List<ActivityFile> files, List<ActivityDirectory> directories, GitActivityReport? gitReport) {
+      List<ActivityFile> files, List<ActivityDirectory> directories,
+      GitActivityReport? gitReport, int hoursWindow) {
     final patterns = <DevelopmentPattern>[];
-    
-    // Language detection from filesystem
+
+    if (files.isEmpty) return patterns;
+
+    // ── Language detection ──────────────────────────────────────────────
     final extensions = <String, int>{};
     for (final file in files) {
       extensions[file.extension] = (extensions[file.extension] ?? 0) + 1;
     }
-    
+
     if (extensions.isNotEmpty) {
       final sortedExts = extensions.entries.toList()
         ..sort((a, b) => b.value.compareTo(a.value));
@@ -555,49 +573,104 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
         type: 'primary_language',
         description: 'Most active file type: ${sortedExts.first.key}',
         confidence: sortedExts.first.value / files.length,
-        metadata: {'extension': sortedExts.first.key, 'count': sortedExts.first.value},
+        metadata: {
+          'extension': sortedExts.first.key,
+          'count': sortedExts.first.value,
+          'breakdown': {for (final e in sortedExts) e.key: e.value},
+        },
       ));
     }
-    
-    // Development rhythm from filesystem
-    final hourlyActivity = <int, int>{};
-    for (final file in files) {
-      final hour = file.modified.hour;
-      hourlyActivity[hour] = (hourlyActivity[hour] ?? 0) + 1;
-    }
-    
-    if (hourlyActivity.isNotEmpty) {
-      final peakHour = hourlyActivity.entries.reduce((a, b) => a.value > b.value ? a : b);
-      patterns.add(DevelopmentPattern(
-        type: 'development_rhythm',
-        description: 'Peak activity at ${peakHour.key}:00',
-        confidence: peakHour.value / files.length,
-        metadata: {'peakHour': peakHour.key, 'activityCount': peakHour.value},
-      ));
-    }
-    
-    // Enhanced git patterns using GitActivityReport
-    if (gitReport != null && gitReport.repositories.isNotEmpty) {
-      final summary = gitReport.summary;
-      final totalCommits = summary['total_commits'] as int;
-      
-      // Development intensity pattern
-      if (totalCommits > 0) {
+
+    // ── Adaptive time bucketing ─────────────────────────────────────────
+    final buckets = _buildTimeBuckets(files, hoursWindow);
+    if (buckets.isNotEmpty) {
+      patterns.add(buckets['rhythm'] as DevelopmentPattern);
+
+      // Directory hotspots — which areas of the codebase are most active
+      final dirActivity = <String, int>{};
+      for (final file in files) {
+        // Use parent directory relative to root as the hotspot key
+        final parts = file.path.split('/');
+        // Take up to 3 levels deep for grouping
+        final key = parts.length > 3
+            ? parts.sublist(0, parts.length - 1).skip(parts.length - 4).join('/')
+            : parts.sublist(0, parts.length - 1).join('/');
+        dirActivity[key] = (dirActivity[key] ?? 0) + 1;
+      }
+
+      if (dirActivity.isNotEmpty) {
+        final sortedDirs = dirActivity.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
+        final topDirs = sortedDirs.take(5).toList();
         patterns.add(DevelopmentPattern(
-          type: 'git_development_intensity',
-          description: 'Git activity: ${summary['development_pattern']}',
-          confidence: 1.0,
+          type: 'directory_hotspots',
+          description: 'Most active area: ${topDirs.first.key} (${topDirs.first.value} files)',
+          confidence: topDirs.first.value / files.length,
           metadata: {
-            'total_commits': totalCommits,
-            'total_repositories': summary['total_repositories'],
-            'total_insertions': summary['total_insertions'],
-            'total_deletions': summary['total_deletions'],
-            'pattern': summary['development_pattern'],
+            'hotspots': {for (final d in topDirs) d.key: d.value},
+            'total_active_dirs': dirActivity.length,
           },
         ));
       }
-      
-      // Most active project pattern
+
+      // Activity burst detection — find clusters of rapid changes
+      if (buckets.containsKey('bursts')) {
+        final burstPattern = buckets['bursts'] as DevelopmentPattern?;
+        if (burstPattern != null) patterns.add(burstPattern);
+      }
+    }
+
+    // ── Git patterns ────────────────────────────────────────────────────
+    if (gitReport != null && gitReport.repositories.isNotEmpty) {
+      final summary = gitReport.summary;
+      final totalCommits = summary['total_commits'] as int;
+
+      if (totalCommits > 0) {
+        // Commit frequency — scaled to window size
+        final commitsPerDay = totalCommits / (hoursWindow / 24);
+        final intensity = commitsPerDay >= 10 ? 'High'
+            : commitsPerDay >= 3 ? 'Moderate'
+            : commitsPerDay >= 1 ? 'Light'
+            : 'Minimal';
+
+        patterns.add(DevelopmentPattern(
+          type: 'git_development_intensity',
+          description: '$intensity git activity: ${commitsPerDay.toStringAsFixed(1)} commits/day',
+          confidence: 1.0,
+          metadata: {
+            'total_commits': totalCommits,
+            'commits_per_day': double.parse(commitsPerDay.toStringAsFixed(1)),
+            'total_repositories': summary['total_repositories'],
+            'total_insertions': summary['total_insertions'],
+            'total_deletions': summary['total_deletions'],
+            'intensity': intensity,
+            'time_window_hours': hoursWindow,
+          },
+        ));
+
+        // Churn ratio — insertions vs deletions as a health signal
+        final insertions = summary['total_insertions'] as int? ?? 0;
+        final deletions = summary['total_deletions'] as int? ?? 0;
+        if (insertions + deletions > 0) {
+          final churnRatio = deletions / (insertions + deletions);
+          final churnType = churnRatio > 0.6 ? 'Heavy refactoring/cleanup'
+              : churnRatio > 0.3 ? 'Balanced development'
+              : 'Primarily additive (new code)';
+          patterns.add(DevelopmentPattern(
+            type: 'code_churn',
+            description: churnType,
+            confidence: 0.85,
+            metadata: {
+              'insertions': insertions,
+              'deletions': deletions,
+              'churn_ratio': double.parse(churnRatio.toStringAsFixed(2)),
+              'type': churnType,
+            },
+          ));
+        }
+      }
+
+      // Most active project
       if (gitReport.repositories.isNotEmpty) {
         final mostActive = gitReport.repositories.first;
         patterns.add(DevelopmentPattern(
@@ -609,30 +682,11 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
             'project_path': mostActive.path,
             'commits': mostActive.recentCommits.length,
             'last_activity': mostActive.lastActivity.toIso8601String(),
-            'insertions': mostActive.stats['total_insertions'],
-            'deletions': mostActive.stats['total_deletions'],
           },
         ));
       }
-      
-      // Commit frequency pattern
-      if (totalCommits > 0) {
-        final hoursAnalyzed = gitReport.hoursAnalyzed;
-        final commitsPerDay = (totalCommits / (hoursAnalyzed / 24)).toStringAsFixed(1);
-        
-        patterns.add(DevelopmentPattern(
-          type: 'commit_frequency',
-          description: 'Commit frequency: $commitsPerDay commits/day',
-          confidence: 0.8,
-          metadata: {
-            'commits_per_day': double.parse(commitsPerDay),
-            'total_commits': totalCommits,
-            'time_window_hours': hoursAnalyzed,
-          },
-        ));
-      }
-      
-      // Multi-repo diversity pattern
+
+      // Multi-repo diversity
       if (gitReport.repositories.length > 1) {
         patterns.add(DevelopmentPattern(
           type: 'project_diversity',
@@ -644,9 +698,184 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
           },
         ));
       }
+
+      // Co-change coupling patterns
+      final coChanges = summary['co_change_patterns'] as List<dynamic>?;
+      if (coChanges != null && coChanges.isNotEmpty) {
+        final topPair = coChanges.first as Map<String, dynamic>;
+        final names = topPair['names'] as List;
+        final ratio = topPair['coupling_ratio'] as double;
+
+        patterns.add(DevelopmentPattern(
+          type: 'file_coupling',
+          description: '${names[0]} and ${names[1]} are tightly coupled (${(ratio * 100).round()}% co-change rate)',
+          confidence: ratio,
+          metadata: {
+            'coupled_pairs': coChanges.length,
+            'top_pairs': coChanges.take(5).toList(),
+          },
+        ));
+      }
+
+      // Commit magnitude distribution
+      final magnitudes = summary['commit_magnitudes'] as List<dynamic>?;
+      if (magnitudes != null && magnitudes.isNotEmpty) {
+        final counts = <String, int>{};
+        for (final m in magnitudes) {
+          final mag = (m as Map<String, dynamic>)['magnitude'] as String;
+          counts[mag] = (counts[mag] ?? 0) + 1;
+        }
+
+        // Find the largest commit
+        final largest = magnitudes.first as Map<String, dynamic>;
+        final largestMsg = largest['message'] as String;
+        final largestLines = largest['total_lines'] as int;
+        final largestMag = largest['magnitude'] as String;
+
+        patterns.add(DevelopmentPattern(
+          type: 'commit_magnitude',
+          description: 'Largest commit: "$largestMsg" ($largestLines lines, $largestMag)',
+          confidence: 0.9,
+          metadata: {
+            'distribution': counts,
+            'largest_commit': {
+              'hash': largest['hash'],
+              'message': largestMsg,
+              'lines': largestLines,
+              'magnitude': largestMag,
+              'files': largest['files_count'],
+            },
+            'total_commits': magnitudes.length,
+          },
+        ));
+      }
     }
-    
+
     return patterns;
+  }
+
+  /// Build adaptive time buckets based on window size and detect rhythm + bursts
+  Map<String, dynamic> _buildTimeBuckets(List<ActivityFile> files, int hoursWindow) {
+    if (files.isEmpty) return {};
+
+    final now = DateTime.now();
+    final windowStart = now.subtract(Duration(hours: hoursWindow));
+
+    // Adaptive bucket size
+    final Duration bucketSize;
+    final String bucketLabel;
+    if (hoursWindow <= 3) {
+      bucketSize = const Duration(minutes: 15);
+      bucketLabel = 'minute';
+    } else if (hoursWindow <= 24) {
+      bucketSize = const Duration(hours: 1);
+      bucketLabel = 'hour';
+    } else if (hoursWindow <= 168) {
+      bucketSize = const Duration(hours: 4);
+      bucketLabel = '4-hour block';
+    } else {
+      bucketSize = const Duration(hours: 24);
+      bucketLabel = 'day';
+    }
+
+    // Create bucket map: bucket start time → file count
+    final buckets = <DateTime, List<ActivityFile>>{};
+    for (final file in files) {
+      final sinceStart = file.modified.difference(windowStart);
+      final bucketIndex = sinceStart.inMinutes ~/ bucketSize.inMinutes;
+      final bucketStart = windowStart.add(Duration(minutes: bucketIndex * bucketSize.inMinutes));
+      buckets.putIfAbsent(bucketStart, () => []).add(file);
+    }
+
+    // Sort buckets chronologically
+    final sortedBuckets = buckets.entries.toList()
+      ..sort((a, b) => a.key.compareTo(b.key));
+
+    // Find peak bucket
+    final peakBucket = sortedBuckets.reduce((a, b) => a.value.length > b.value.length ? a : b);
+    final peakTime = peakBucket.key;
+
+    // Format peak time label based on granularity
+    final String peakLabel;
+    if (hoursWindow <= 3) {
+      peakLabel = '${peakTime.hour}:${peakTime.minute.toString().padLeft(2, '0')}';
+    } else if (hoursWindow <= 24) {
+      peakLabel = '${peakTime.hour}:00';
+    } else if (hoursWindow <= 168) {
+      final weekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][peakTime.weekday - 1];
+      peakLabel = '$weekday ${peakTime.hour}:00';
+    } else {
+      final monthDay = '${peakTime.month}/${peakTime.day}';
+      peakLabel = monthDay;
+    }
+
+    // Build bucket summary for metadata
+    final bucketSummary = <Map<String, dynamic>>[];
+    for (final entry in sortedBuckets) {
+      bucketSummary.add({
+        'start': entry.key.toIso8601String(),
+        'count': entry.value.length,
+        'files': entry.value.map((f) => f.name).toList(),
+      });
+    }
+
+    // Calculate activity distribution stats
+    final counts = sortedBuckets.map((e) => e.value.length).toList();
+    final avgPerBucket = counts.isEmpty ? 0.0 : counts.reduce((a, b) => a + b) / counts.length;
+    final activeBuckets = counts.where((c) => c > 0).length;
+    final totalBuckets = (hoursWindow * 60) ~/ bucketSize.inMinutes;
+    final coveragePercent = totalBuckets > 0 ? (activeBuckets / totalBuckets * 100).round() : 0;
+
+    final result = <String, dynamic>{
+      'rhythm': DevelopmentPattern(
+        type: 'development_rhythm',
+        description: 'Peak activity at $peakLabel (${peakBucket.value.length} files in one $bucketLabel)',
+        confidence: peakBucket.value.length / files.length,
+        metadata: {
+          'peak_time': peakLabel,
+          'peak_count': peakBucket.value.length,
+          'bucket_granularity': bucketLabel,
+          'bucket_size_minutes': bucketSize.inMinutes,
+          'active_buckets': activeBuckets,
+          'total_possible_buckets': totalBuckets,
+          'coverage_percent': coveragePercent,
+          'avg_files_per_bucket': double.parse(avgPerBucket.toStringAsFixed(1)),
+          'distribution': bucketSummary,
+        },
+      ),
+    };
+
+    // Burst detection — buckets with > 2x the average activity
+    if (avgPerBucket > 0) {
+      final burstThreshold = avgPerBucket * 2;
+      final bursts = sortedBuckets
+          .where((e) => e.value.length > burstThreshold)
+          .toList();
+
+      if (bursts.isNotEmpty) {
+        final burstLabels = bursts.map((b) {
+          final t = b.key;
+          if (hoursWindow <= 24) return '${t.hour}:${t.minute.toString().padLeft(2, '0')}';
+          final wd = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][t.weekday - 1];
+          return '$wd ${t.hour}:00';
+        }).toList();
+
+        result['bursts'] = DevelopmentPattern(
+          type: 'activity_bursts',
+          description: '${bursts.length} activity burst${bursts.length == 1 ? '' : 's'} detected at ${burstLabels.join(", ")}',
+          confidence: 0.8,
+          metadata: {
+            'burst_count': bursts.length,
+            'burst_times': burstLabels,
+            'burst_files': bursts.map((b) => b.value.length).toList(),
+            'threshold': double.parse(burstThreshold.toStringAsFixed(1)),
+            'avg_per_bucket': double.parse(avgPerBucket.toStringAsFixed(1)),
+          },
+        );
+      }
+    }
+
+    return result;
   }
   
   /// Generate consciousness markers with enhanced git metrics
