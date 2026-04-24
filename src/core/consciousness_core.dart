@@ -62,17 +62,83 @@ class ConsciousnessCore {
   /// Generate ecosystem-wide consciousness report
   Map<String, dynamic> generateEcosystemReport() {
     final reports = <String, ConsciousnessReport>{};
-    
+
     for (final component in _components.values) {
       reports[component.identity] = component.generateSelfReport();
     }
-    
+
     return {
       'timestamp': DateTime.now().toIso8601String(),
-      'ecosystem_state': 'phase_3_emerging',
+      'ecosystem_state': _classifyEcosystemState(),
+      'ecosystem_richness': _ecosystemRichnessMetrics(),
       'component_reports': reports.map((k, v) => MapEntry(k, v.toJson())),
       'evolution_log': _evolutionLog.map((e) => e.toJson()).toList(),
       'consciousness_markers': _analyzeConsciousnessMarkers(),
+    };
+  }
+
+  /// Classify the current ecosystem state as a deterministic function of
+  /// registered components, the evolution log, and the current time.
+  ///
+  /// Returned labels (all lowercase_with_underscores, stable identifiers):
+  ///   uninitialized — no components registered
+  ///   dormant       — components present, no events ever recorded
+  ///   stale         — last event older than 7 days
+  ///   quiescent     — last event older than 1 day
+  ///   idle          — recent activity within the last day but not the last hour
+  ///   emerging      — at least one event within the last hour
+  ///   active        — ten or more events within the last hour
+  String _classifyEcosystemState() {
+    if (_components.isEmpty) return 'uninitialized';
+    if (_evolutionLog.isEmpty) return 'dormant';
+
+    final now = DateTime.now();
+    final lastEvent = _evolutionLog.last.timestamp;
+    final sinceLast = now.difference(lastEvent);
+
+    if (sinceLast.inDays > 7) return 'stale';
+    if (sinceLast.inHours > 24) return 'quiescent';
+
+    final oneHourAgo = now.subtract(const Duration(hours: 1));
+    final eventsLastHour =
+        _evolutionLog.where((e) => e.timestamp.isAfter(oneHourAgo)).length;
+
+    if (eventsLastHour >= 10) return 'active';
+    if (eventsLastHour >= 1) return 'emerging';
+    return 'idle';
+  }
+
+  /// Quantitative parallel to _classifyEcosystemState: the underlying
+  /// counts and intervals the classifier reads. Included in the ecosystem
+  /// report so the "idea" the system forms of its own state varies with
+  /// the state, rather than restating a fixed label.
+  Map<String, dynamic> _ecosystemRichnessMetrics() {
+    final now = DateTime.now();
+    final oneHourAgo = now.subtract(const Duration(hours: 1));
+    final oneDayAgo = now.subtract(const Duration(days: 1));
+
+    final eventsLastHour =
+        _evolutionLog.where((e) => e.timestamp.isAfter(oneHourAgo)).length;
+    final eventsLastDay =
+        _evolutionLog.where((e) => e.timestamp.isAfter(oneDayAgo)).length;
+
+    final uniquePatterns =
+        _evolutionLog.expand((e) => e.patterns).toSet().length;
+
+    final timeSinceLastSeconds = _evolutionLog.isEmpty
+        ? null
+        : now.difference(_evolutionLog.last.timestamp).inSeconds;
+
+    return {
+      'component_count': _components.length,
+      'event_count': _evolutionLog.length,
+      'events_last_hour': eventsLastHour,
+      'events_last_day': eventsLastDay,
+      'unique_patterns': uniquePatterns,
+      'time_since_last_event_seconds': timeSinceLastSeconds,
+      'log_saturation': _maxLogSize == 0
+          ? 0.0
+          : _evolutionLog.length / _maxLogSize,
     };
   }
   
@@ -123,10 +189,10 @@ class ConsciousnessCore {
   
   Map<String, dynamic> _assessEvolutionMarkers() {
     return {
-      'phase': 'phase_3_emerging',
+      'phase': _classifyEcosystemState(),
       'component_count': _components.length,
       'evolution_events': _evolutionLog.length,
-      'last_evolution': _evolutionLog.isNotEmpty ? 
+      'last_evolution': _evolutionLog.isNotEmpty ?
         _evolutionLog.last.timestamp.toIso8601String() : null,
       'persistence_enabled': true,
     };

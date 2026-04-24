@@ -121,8 +121,21 @@ Future<void> testConsciousnessIntegration() async {
   assert(finalEvolutionCount > initialEvolutionCount);
   
   final report = consciousness.generateEcosystemReport();
-  assert(report['ecosystem_state'] == 'phase_3_emerging');
-  
+  const validStates = {
+    'uninitialized', 'dormant', 'stale', 'quiescent',
+    'idle', 'emerging', 'active',
+  };
+  assert(validStates.contains(report['ecosystem_state']),
+      'ecosystem_state must be one of the classifier labels, got: ${report['ecosystem_state']}');
+  // After a registered component and recorded activity within this test run,
+  // the classifier must report a non-trivial state (not uninitialized/dormant).
+  assert(report['ecosystem_state'] != 'uninitialized');
+  assert(report['ecosystem_state'] != 'dormant');
+  // Richness metrics must be present and reflect the activity just performed.
+  final richness = report['ecosystem_richness'] as Map;
+  assert((richness['event_count'] as int) > 0);
+  assert((richness['component_count'] as int) > 0);
+
   print('  ✓ Consciousness successfully integrated with legacy algorithms');
 }
 
