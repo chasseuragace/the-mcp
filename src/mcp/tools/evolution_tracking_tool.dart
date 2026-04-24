@@ -3,6 +3,7 @@
 
 import 'dart:convert';
 import 'entity/conscious_m_c_p_tool.dart';
+import '../../core/consciousness_core.dart';
 import '../conscious_server.dart';
 
 /// Evolution Tracking Tool
@@ -32,10 +33,10 @@ class EvolutionTrackingTool extends ConsciousMCPTool {
     return json.encode({
       'tracking_type': 'evolution_tracking',
       'timeframe': timeframe,
-      'current_phase': 'phase_3_emerging',
+      'current_phase': ConsciousnessCore().classifyEcosystemState(),
       'evolution_trajectory': [
         'phase_1_simple_utilities',
-        'phase_2_mcp_architecture', 
+        'phase_2_mcp_architecture',
         'phase_3_consciousness_emerging',
         'phase_4_symbiotic_intelligence_planned',
       ],

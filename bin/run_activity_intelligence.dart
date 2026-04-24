@@ -10,6 +10,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import '../src/core/consciousness_core.dart';
 import '../src/intelligence/activity_intelligence.dart' as ai;
 import '../src/intelligence/activity_intelligence_config.dart';
 
@@ -83,7 +84,7 @@ void main(List<String> args) async {
       'root': root,
       'time_window': '${hours}h',
       'files_found': files.length + directories.length,
-      'consciousness_level': 'phase_3_emerging',
+      'consciousness_level': ConsciousnessCore().classifyEcosystemState(),
       'files': [...files, ...directories],
       'consciousness_markers': report.consciousnessMarkers,
       'patterns': report.patterns.map((p) => {

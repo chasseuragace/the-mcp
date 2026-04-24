@@ -274,7 +274,16 @@ class GitActivityTracker {
       );
       
       if (result.exitCode != 0) {
-        print('Git log failed for $repoPath: ${result.stderr}');
+        // Benign cases: fresh repo on an unborn branch, or a repo whose
+        // current HEAD has no commits yet. These are expected when
+        // walking a large tree and should not pollute the output.
+        final stderrText = (result.stderr as String).toLowerCase();
+        final isBenign = stderrText.contains('does not have any commits yet') ||
+            stderrText.contains('bad default revision') ||
+            stderrText.contains('unknown revision');
+        if (!isBenign) {
+          stderr.writeln('Git log failed for $repoPath: ${result.stderr}');
+        }
         return commits;
       }
       

@@ -409,7 +409,7 @@ class ActivityIntelligence implements ConsciousComponent {
       awareness: state,
       patterns: ['filesystem_intelligence', 'temporal_analysis', 'development_patterns'],
       evolutionMarkers: {
-        'phase': 'phase_3_emerging',
+        'phase': _consciousness.classifyEcosystemState(),
         'capabilities': ['consciousness_aware_analysis', 'pattern_detection'],
       },
     );

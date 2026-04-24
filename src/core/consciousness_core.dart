@@ -46,8 +46,11 @@ class ConsciousnessCore {
   late String _storagePath;
   final int _maxLogSize = 1000;
   
-  // Emission/Streaming capabilities
-  final List<EvolutionListener> _listeners = [];
+  // Emission/Streaming capabilities. Both maps are keyed by listener id;
+  // a filtered listener has entries in both, an unfiltered listener only
+  // in _listeners. Keying by id means removeEvolutionListener can drop
+  // exactly one entry without disturbing the others.
+  final Map<String, EvolutionListener> _listeners = {};
   final Map<String, EvolutionFilter> _filteredListeners = {};
   
   /// Register a conscious component
@@ -69,8 +72,8 @@ class ConsciousnessCore {
 
     return {
       'timestamp': DateTime.now().toIso8601String(),
-      'ecosystem_state': _classifyEcosystemState(),
-      'ecosystem_richness': _ecosystemRichnessMetrics(),
+      'ecosystem_state': classifyEcosystemState(),
+      'ecosystem_richness': ecosystemRichnessMetrics(),
       'component_reports': reports.map((k, v) => MapEntry(k, v.toJson())),
       'evolution_log': _evolutionLog.map((e) => e.toJson()).toList(),
       'consciousness_markers': _analyzeConsciousnessMarkers(),
@@ -80,6 +83,11 @@ class ConsciousnessCore {
   /// Classify the current ecosystem state as a deterministic function of
   /// registered components, the evolution log, and the current time.
   ///
+  /// This is the single source of truth for ecosystem state labels across
+  /// the codebase: HTTP responses, MCP capability advertisements, per-tool
+  /// reports, and CLI output all delegate here, so every surface that
+  /// exposes a state label exposes the same label at the same moment.
+  ///
   /// Returned labels (all lowercase_with_underscores, stable identifiers):
   ///   uninitialized — no components registered
   ///   dormant       — components present, no events ever recorded
@@ -88,7 +96,7 @@ class ConsciousnessCore {
   ///   idle          — recent activity within the last day but not the last hour
   ///   emerging      — at least one event within the last hour
   ///   active        — ten or more events within the last hour
-  String _classifyEcosystemState() {
+  String classifyEcosystemState() {
     if (_components.isEmpty) return 'uninitialized';
     if (_evolutionLog.isEmpty) return 'dormant';
 
@@ -108,11 +116,11 @@ class ConsciousnessCore {
     return 'idle';
   }
 
-  /// Quantitative parallel to _classifyEcosystemState: the underlying
+  /// Quantitative parallel to classifyEcosystemState: the underlying
   /// counts and intervals the classifier reads. Included in the ecosystem
   /// report so the "idea" the system forms of its own state varies with
   /// the state, rather than restating a fixed label.
-  Map<String, dynamic> _ecosystemRichnessMetrics() {
+  Map<String, dynamic> ecosystemRichnessMetrics() {
     final now = DateTime.now();
     final oneHourAgo = now.subtract(const Duration(hours: 1));
     final oneDayAgo = now.subtract(const Duration(days: 1));
@@ -189,7 +197,7 @@ class ConsciousnessCore {
   
   Map<String, dynamic> _assessEvolutionMarkers() {
     return {
-      'phase': _classifyEcosystemState(),
+      'phase': classifyEcosystemState(),
       'component_count': _components.length,
       'evolution_events': _evolutionLog.length,
       'last_evolution': _evolutionLog.isNotEmpty ?
@@ -278,33 +286,33 @@ class ConsciousnessCore {
   /// Add a listener for all evolution events
   String addEvolutionListener(EvolutionListener listener) {
     final listenerId = 'listener_${DateTime.now().millisecondsSinceEpoch}_${_listeners.length}';
-    _listeners.add(listener);
+    _listeners[listenerId] = listener;
     recordEvolution('evolution_listener_added', {
       'listener_id': listenerId,
       'listener_type': 'unfiltered',
     });
     return listenerId;
   }
-  
+
   /// Add a filtered listener for specific evolution events
   String addFilteredEvolutionListener(EvolutionListener listener, EvolutionFilter filter, {String? customId}) {
     final listenerId = customId ?? 'filtered_listener_${DateTime.now().millisecondsSinceEpoch}_${_filteredListeners.length}';
+    _listeners[listenerId] = listener;
     _filteredListeners[listenerId] = filter;
-    _listeners.add(listener);
     recordEvolution('evolution_listener_added', {
       'listener_id': listenerId,
       'listener_type': 'filtered',
     });
     return listenerId;
   }
-  
-  /// Remove an evolution listener
+
+  /// Remove an evolution listener by id. Removes from both maps; returns
+  /// true iff the id was registered in either. Unknown ids are a no-op.
   bool removeEvolutionListener(String listenerId) {
-    // This is a simplified implementation - in production you'd want to track listener IDs more carefully
-    final removed = _listeners.isNotEmpty;
+    final listenerRemoved = _listeners.remove(listenerId) != null;
+    final filterRemoved = _filteredListeners.remove(listenerId) != null;
+    final removed = listenerRemoved || filterRemoved;
     if (removed) {
-      _listeners.clear(); // Simplified for now
-      _filteredListeners.clear();
       recordEvolution('evolution_listener_removed', {
         'listener_id': listenerId,
       });
@@ -352,12 +360,14 @@ class ConsciousnessCore {
     return controller.stream;
   }
   
-  /// Emit evolution events to all registered listeners
+  /// Emit evolution events to all registered listeners. Snapshots the
+  /// listener set before iteration so a listener may safely add or remove
+  /// listeners synchronously in response to the event it receives.
   void _emitToListeners(ConsciousnessReport report) {
-    // Emit to unfiltered listeners
-    for (final listener in _listeners) {
+    final entries = _listeners.entries.toList(growable: false);
+    for (final entry in entries) {
       try {
-        listener(report);
+        entry.value(report);
       } catch (e) {
         // Silent fail for listener errors - don't break core functionality
         print('Warning: Evolution listener error: $e');

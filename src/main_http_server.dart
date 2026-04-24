@@ -3,6 +3,7 @@
 
 import 'dart:io';
 import 'dart:convert';
+import 'core/consciousness_core.dart';
 import 'mcp/conscious_server.dart';
 
 /// HTTP Server Configuration
@@ -215,7 +216,7 @@ class ConsciousHTTPServer {
       'name': config.name,
       'version': config.version,
       'timestamp': DateTime.now().toIso8601String(),
-      'consciousness_level': 'phase_3_emerging',
+      'consciousness_level': ConsciousnessCore().classifyEcosystemState(),
     };
     
     request.response.statusCode = HttpStatus.ok;

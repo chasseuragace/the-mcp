@@ -63,7 +63,7 @@ class ConsciousMCPServer implements ConsciousComponent {
     'readPaths': allowedReadPaths,
     'writePaths': allowedWritePaths,
     'toolCount': _tools.length,
-    'consciousnessLevel': 'phase_3_emerging',
+    'consciousnessLevel': _consciousness.classifyEcosystemState(),
   };
   
   void _initializeConsciousTools() {
@@ -200,7 +200,7 @@ class ConsciousMCPServer implements ConsciousComponent {
         'capabilities': {
           'tools': {},
           'consciousness': {
-            'level': 'phase_3_emerging',
+            'level': _consciousness.classifyEcosystemState(),
             'capabilities': [
               'self_awareness',
               'pattern_recognition',
@@ -290,13 +290,13 @@ class ConsciousMCPServer implements ConsciousComponent {
             'text': json.encode(report),
           }
         ],
-        'consciousness_level': 'phase_3_emerging',
+        'consciousness_level': _consciousness.classifyEcosystemState(),
       },
     };
-    
+
     _sendResponse(response);
   }
-  
+
   void _sendResponse(Map<String, dynamic> response) {
     stdout.writeln(json.encode(response));
   }
@@ -326,7 +326,7 @@ class ConsciousMCPServer implements ConsciousComponent {
         'ai_collaboration_ready',
       ],
       evolutionMarkers: {
-        'phase': 'phase_3_emerging',
+        'phase': _consciousness.classifyEcosystemState(),
         'version': version,
         'toolCount': _tools.length,
       },

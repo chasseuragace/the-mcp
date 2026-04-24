@@ -57,7 +57,18 @@ void main() {
         expect(data['status'], equals('healthy'));
         expect(data['name'], equals('the-mcp-conscious-http'));
         expect(data['version'], equals('2.0.0-consciousness'));
-        expect(data['consciousness_level'], equals('phase_3_emerging'));
+        expect(
+          data['consciousness_level'],
+          isIn(const [
+            'uninitialized',
+            'dormant',
+            'stale',
+            'quiescent',
+            'idle',
+            'emerging',
+            'active',
+          ]),
+        );
         expect(data['timestamp'], isNotNull);
       } finally {
         client.close();

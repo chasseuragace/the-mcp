@@ -3,6 +3,7 @@
 
 import 'dart:convert';
 import 'entity/conscious_m_c_p_tool.dart';
+import '../../core/consciousness_core.dart';
 import '../conscious_server.dart';
 
 /// Ecosystem Analysis Tool
@@ -32,7 +33,7 @@ class EcosystemAnalysisTool extends ConsciousMCPTool {
     return json.encode({
       'analysis_type': 'ecosystem_analysis',
       'scope': scope,
-      'ecosystem_health': 'phase_3_emerging',
+      'ecosystem_health': ConsciousnessCore().classifyEcosystemState(),
       'integration_points': [
         'supabase_mcp',
         'postgresql_mcp', 
