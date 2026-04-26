@@ -1,5 +1,8 @@
 # The MCP
 
+[![CI](https://github.com/chasseuragace/the-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/chasseuragace/the-mcp/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 *Demonstrated in the geometric order.*
 
 A Model Context Protocol server, written in Dart, that exposes an author's filesystem and git activity to a connected LLM through a fixed set of tools, and that persists a log of its own operations to disk.

@@ -1,5 +1,5 @@
 name: the_mcp_conscious
-description: AI-collaborative consciousness amplification infrastructure through secure filesystem access
+description: A Dart MCP server that exposes filesystem and git activity to a connected LLM as a fixed set of tools, and persists a log of its own operations to disk.
 version: 2.0.0+consciousness
 
 environment:

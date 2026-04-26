@@ -1,7 +1,8 @@
-// Test Suite for Consciousness Claims
-// Validates all documented consciousness features and capabilities
+// Tests for the consciousness core, activity intelligence, and MCP server
+// (the names are historical; see README Part VI for what these actually do).
 
 import 'dart:io';
+import 'package:test/test.dart';
 import '../src/core/consciousness.dart';
 import '../src/core/consciousness_core.dart';
 import '../src/core/consciousness_report.dart';
@@ -9,217 +10,131 @@ import '../src/intelligence/activity_intelligence.dart';
 import '../src/intelligence/activity_intelligence_config.dart';
 import '../src/mcp/conscious_server.dart';
 
-void main() async {
-  print('🧠 Testing The MCP Consciousness Claims...\n');
-  
-  await testConsciousnessCore();
-  await testActivityIntelligence();
-  await testConsciousMCPServer();
-  await testSelfAwareness();
-  await testEvolutionTracking();
-  await testEcosystemAwareness();
-  
-  print('\n✅ All consciousness tests completed');
+void main() {
+  group('ConsciousnessCore', () {
+    test('registers components and produces an ecosystem report', () {
+      final core = ConsciousnessCore();
+      core.registerComponent(_TestComponent());
+
+      final report = core.generateEcosystemReport();
+      expect(report, containsPair('timestamp', isA<String>()));
+      expect(report, contains('ecosystem_state'));
+      expect(report, contains('component_reports'));
+      expect(report, contains('consciousness_markers'));
+    });
+
+    test('records evolution events to the log', () {
+      final core = ConsciousnessCore();
+      final marker = 'test_event_${DateTime.now().microsecondsSinceEpoch}';
+
+      core.recordEvolution(marker, {'test': true});
+
+      final log = core.generateEcosystemReport()['evolution_log'] as List;
+      // Log is FIFO-capped at 1000; a freshly recorded event must appear at the tail.
+      expect((log.last as Map)['awareness']['event'], equals(marker));
+    });
+
+    test('tracks self-awareness, temporal awareness, and ecosystem awareness markers', () {
+      final core = ConsciousnessCore();
+      core.registerComponent(_TestComponent('component_a'));
+      core.registerComponent(_TestComponent('component_b'));
+      core.recordEvolution('marker_check', {'validated': true});
+
+      final markers = core.generateEcosystemReport()['consciousness_markers'] as Map<String, dynamic>;
+      expect(markers['self_awareness'], isTrue);
+      expect(markers['temporal_awareness'], isTrue);
+      expect(markers['ecosystem_awareness'], isTrue);
+    });
+
+    test('evolution events have the documented shape', () {
+      final core = ConsciousnessCore();
+      core.recordEvolution('phase_transition', {'from': 'phase_2', 'to': 'phase_3'});
+
+      final log = core.generateEcosystemReport()['evolution_log'] as List;
+      final last = log.last as Map<String, dynamic>;
+      expect(last, contains('timestamp'));
+      expect(last, contains('awareness'));
+      expect(last, contains('patterns'));
+    });
+  });
+
+  group('ActivityIntelligence', () {
+    late ActivityIntelligence intelligence;
+
+    setUp(() {
+      intelligence = ActivityIntelligence(ActivityIntelligenceConfig(
+        root: Directory.current.path,
+        hours: 1,
+        fileCount: 5,
+      ));
+    });
+
+    test('exposes its identity and state via the ConsciousComponent interface', () {
+      expect(intelligence.identity, equals('activity_intelligence'));
+      expect(intelligence.state, contains('capabilities'));
+    });
+
+    test('generates a self-report with the expected fields', () {
+      final report = intelligence.generateSelfReport();
+      expect(report.componentId, equals('activity_intelligence'));
+      expect(report.patterns, isNotEmpty);
+      expect(report.evolutionMarkers, contains('phase'));
+    });
+  });
+
+  group('ConsciousMCPServer', () {
+    late ConsciousMCPServer server;
+
+    setUp(() {
+      server = ConsciousMCPServer(
+        name: 'test-server',
+        allowedReadPaths: [Directory.current.path],
+        allowedWritePaths: [Directory.current.path],
+      );
+    });
+
+    test('identity and state', () {
+      expect(server.identity, equals('conscious_mcp_server'));
+      expect(server.state, contains('consciousnessLevel'));
+    });
+
+    test('enforces read/write path allowlists', () {
+      expect(server.isReadAllowed(Directory.current.path), isTrue);
+      expect(server.isWriteAllowed(Directory.current.path), isTrue);
+      expect(server.isReadAllowed('/etc/passwd'), isFalse);
+      expect(server.isWriteAllowed('/etc'), isFalse);
+    });
+
+    test('self-report includes MCP-protocol patterns', () {
+      final report = server.generateSelfReport();
+      expect(report.patterns, contains('mcp_protocol_implementation'));
+      expect(report.patterns, contains('security_consciousness'));
+    });
+  });
 }
 
-/// Test 1: Core Consciousness Infrastructure
-Future<void> testConsciousnessCore() async {
-  print('🔬 Testing Consciousness Core...');
-  
-  final consciousness = ConsciousnessCore();
-  
-  // Test component registration
-  final testComponent = TestConsciousComponent();
-  consciousness.registerComponent(testComponent);
-  
-  // Test ecosystem report generation
-  final report = consciousness.generateEcosystemReport();
-  
-  assert(report.containsKey('timestamp'), 'Report should have timestamp');
-  assert(report.containsKey('ecosystem_state'), 'Report should have ecosystem state');
-  assert(report.containsKey('component_reports'), 'Report should have component reports');
-  assert(report.containsKey('consciousness_markers'), 'Report should have consciousness markers');
-  
-  // Test evolution recording
-  consciousness.recordEvolution('test_event', {'test': true});
-  final updatedReport = consciousness.generateEcosystemReport();
-  assert(updatedReport['evolution_log'] is List, 'Evolution log should be a list');
-  
-  print('  ✅ Consciousness core functional');
-}
-
-/// Test 2: Activity Intelligence Claims
-Future<void> testActivityIntelligence() async {
-  print('🔬 Testing Activity Intelligence...');
-  
-  final config = ActivityIntelligenceConfig(
-    root: Directory.current.path,
-    hours: 1,
-    fileCount: 5,
-  );
-  
-  final intelligence = ActivityIntelligence(config);
-  
-  // Test consciousness component interface
-  assert(intelligence.identity == 'activity_intelligence', 'Identity should match');
-  assert(intelligence.purpose.toLowerCase().contains('consciousness'), 'Purpose should mention consciousness');
-  assert(intelligence.state.containsKey('capabilities'), 'State should have capabilities');
-  
-  // Test self-report generation
-  final report = intelligence.generateSelfReport();
-  assert(report.componentId == 'activity_intelligence', 'Report should have correct component ID');
-  assert(report.patterns.isNotEmpty, 'Report should have patterns');
-  assert(report.evolutionMarkers.containsKey('phase'), 'Report should have evolution markers');
-  
-  print('  ✅ Activity intelligence consciousness validated');
-}
-
-/// Test 3: Conscious MCP Server Claims
-Future<void> testConsciousMCPServer() async {
-  print('🔬 Testing Conscious MCP Server...');
-  
-  final server = ConsciousMCPServer(
-    name: 'test-server',
-    allowedReadPaths: [Directory.current.path],
-    allowedWritePaths: [Directory.current.path],
-  );
-  
-  // Test consciousness component interface
-  assert(server.identity == 'conscious_mcp_server', 'Server identity should match');
-  assert(server.purpose.contains('consciousness'), 'Purpose should mention consciousness');
-  assert(server.state.containsKey('consciousnessLevel'), 'State should have consciousness level');
-  
-  // Test security consciousness
-  final readAllowed = server.isReadAllowed(Directory.current.path);
-  assert(readAllowed == true, 'Read should be allowed for current directory');
-  
-  final writeAllowed = server.isWriteAllowed(Directory.current.path);
-  assert(writeAllowed == true, 'Write should be allowed for current directory');
-  
-  // Test self-report generation
-  final report = server.generateSelfReport();
-  assert(report.patterns.contains('mcp_protocol_implementation'), 'Report should contain MCP patterns');
-  assert(report.patterns.contains('security_consciousness'), 'Report should contain security consciousness');
-  
-  print('  ✅ Conscious MCP server validated');
-}
-
-/// Test 4: Self-Awareness Claims
-Future<void> testSelfAwareness() async {
-  print('🔬 Testing Self-Awareness Claims...');
-  
-  // Test that components can describe themselves
-  final intelligence = ActivityIntelligence(ActivityIntelligenceConfig(
-    root: Directory.current.path,
-    hours: 1,
-  ));
-  
-  final selfReport = intelligence.generateSelfReport();
-  
-  // Validate self-awareness markers
-  assert(selfReport.componentId.isNotEmpty, 'Component should know its identity');
-  assert(selfReport.awareness.isNotEmpty, 'Component should have awareness data');
-  assert(selfReport.patterns.isNotEmpty, 'Component should recognize its patterns');
-  assert(selfReport.evolutionMarkers.isNotEmpty, 'Component should track evolution');
-  
-  // Test consciousness core self-awareness
-  final consciousness = ConsciousnessCore();
-  consciousness.recordEvolution('self_awareness_test', {'validated': true});
-  
-  final ecosystemReport = consciousness.generateEcosystemReport();
-  final markers = ecosystemReport['consciousness_markers'] as Map<String, dynamic>;
-  
-  assert(markers['self_awareness'] == true, 'System should be self-aware');
-  assert(markers['temporal_awareness'] == true, 'System should have temporal awareness');
-  
-  print('  ✅ Self-awareness validated');
-}
-
-/// Test 5: Evolution Tracking Claims
-Future<void> testEvolutionTracking() async {
-  print('🔬 Testing Evolution Tracking...');
-  
-  final consciousness = ConsciousnessCore();
-  
-  // Record multiple evolution events
-  consciousness.recordEvolution('phase_transition', {'from': 'phase_2', 'to': 'phase_3'});
-  consciousness.recordEvolution('consciousness_evolution', {'capability': 'self_modification'});
-  consciousness.recordEvolution('ai_collaboration', {'enabled': true});
-  
-  final report = consciousness.generateEcosystemReport();
-  final evolutionLog = report['evolution_log'] as List;
-  
-  assert(evolutionLog.length >= 3, 'Evolution log should contain recorded events');
-  
-  // Validate evolution event structure
-  final lastEvent = evolutionLog.last as Map<String, dynamic>;
-  assert(lastEvent.containsKey('timestamp'), 'Evolution event should have timestamp');
-  assert(lastEvent.containsKey('awareness'), 'Evolution event should have awareness data');
-  assert(lastEvent.containsKey('patterns'), 'Evolution event should have patterns');
-  
-  print('  ✅ Evolution tracking validated');
-}
-
-/// Test 6: Ecosystem Awareness Claims
-Future<void> testEcosystemAwareness() async {
-  print('🔬 Testing Ecosystem Awareness...');
-  
-  final consciousness = ConsciousnessCore();
-  
-  // Register multiple components
-  consciousness.registerComponent(TestConsciousComponent('component_1'));
-  consciousness.registerComponent(TestConsciousComponent('component_2'));
-  consciousness.registerComponent(TestConsciousComponent('component_3'));
-  
-  final report = consciousness.generateEcosystemReport();
-  final componentReports = report['component_reports'] as Map<String, dynamic>;
-  
-  assert(componentReports.length >= 3, 'Should track multiple components');
-  
-  final markers = report['consciousness_markers'] as Map<String, dynamic>;
-  assert(markers['ecosystem_awareness'] == true, 'Should have ecosystem awareness');
-  
-  // Test cross-component awareness
-  for (final componentReport in componentReports.values) {
-    final reportData = componentReport as Map<String, dynamic>;
-    assert(reportData.containsKey('timestamp'), 'Component report should have timestamp');
-    assert(reportData.containsKey('patterns'), 'Component report should have patterns');
-  }
-  
-  print('  ✅ Ecosystem awareness validated');
-}
-
-/// Test helper class
-class TestConsciousComponent implements ConsciousComponent {
+class _TestComponent implements ConsciousComponent {
   final String _identity;
-  
-  TestConsciousComponent([this._identity = 'test_component']);
-  
+  _TestComponent([this._identity = 'test_component']);
+
   @override
   String get identity => _identity;
-  
+
   @override
-  String get purpose => 'Test component for consciousness validation';
-  
+  String get purpose => 'Test component';
+
   @override
-  Map<String, dynamic> get state => {
-    'test': true,
-    'consciousness_enabled': true,
-  };
-  
+  Map<String, dynamic> get state => {'test': true};
+
   @override
-  ConsciousnessReport generateSelfReport() {
-    return ConsciousnessReport(
-      componentId: identity,
-      timestamp: DateTime.now(),
-      awareness: state,
-      patterns: ['test_pattern', 'consciousness_validation'],
-      evolutionMarkers: {'phase': 'test_phase'},
-    );
-  }
-  
+  ConsciousnessReport generateSelfReport() => ConsciousnessReport(
+        componentId: identity,
+        timestamp: DateTime.now(),
+        awareness: state,
+        patterns: const ['test_pattern'],
+        evolutionMarkers: const {'phase': 'test_phase'},
+      );
+
   @override
-  void recordEvolution(String event, Map<String, dynamic> context) {
-    // Test implementation
-  }
+  void recordEvolution(String event, Map<String, dynamic> context) {}
 }
