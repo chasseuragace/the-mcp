@@ -17,7 +17,7 @@
 
 ### 2. **MCP Tool Integration** (`src/mcp/tools/git_activity_tool.dart`)
 **MCP-compatible git activity analysis**:
-- **User Email Filtering**: Specifically tracks chasseuragace@gmail.com commits
+- **User Email Filtering**: Specifically tracks <your-email@example.com> commits
 - **Time Window Options**: Flexible time range analysis
 - **Cache Management**: Automatic caching with age validation
 - **Comprehensive Reporting**: Detailed markdown reports with insights
@@ -112,7 +112,7 @@ find /Users/ajaydahal/v4 -name ".git" -type d
 ### **MCP Tool Interface**
 ```bash
 # Get git activity for last week
-git_activity user_email="chasseuragace@gmail.com" time_window="week" max_repos=10
+git_activity user_email="<your-email@example.com>" time_window="week" max_repos=10
 
 # Get today's activity with cache disabled
 git_activity time_window="today" use_cache=false
@@ -126,7 +126,7 @@ git_activity root_path="/Users/ajaydahal/v4" time_window="2weeks"
 # Git Activity Report - week
 
 **Generated**: 2025-09-14T00:15:00Z
-**User**: chasseuragace@gmail.com
+**User**: <your-email@example.com>
 **Time Window**: 168 hours
 **Analysis Time**: 1250ms
 
