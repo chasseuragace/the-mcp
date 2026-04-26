@@ -1,1 +1,24 @@
+# Dart / Pub
+.dart_tool/
+.packages
+build/
+pubspec_lock.bak
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+*.iml
+.kiro/specs/
+.kiro/settings/
+.claude/
+
+# Local runtime caches and per-tool state (regenerated at runtime)
 git_activity_cache.json
+data/mcp_evolution_log.json
+reports/*
+!reports/.gitkeep
+
+# Logs and scratch
+*.log
+*.tmp
