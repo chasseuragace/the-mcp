@@ -18,13 +18,13 @@
 
 ### 3. Filesystem Scan Test
 ```json
-{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "filesystem_scan", "arguments": {"root": "/Users/ajaydahal/v4/the_mcp", "hours": 1}}}
+{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "filesystem_scan", "arguments": {"root": "<workspace-root>", "hours": 1}}}
 ```
 **Expected**: Activity analysis with consciousness markers
 
 ### 4. Recent Activity Test
 ```json
-{"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "recent_activity", "arguments": {"root": "/Users/ajaydahal/v4/the_mcp", "file_count": 10}}}
+{"jsonrpc": "2.0", "id": 4, "method": "tools/call", "params": {"name": "recent_activity", "arguments": {"root": "<workspace-root>", "file_count": 10}}}
 ```
 **Expected**: Legacy-integrated activity intelligence report
 
@@ -36,7 +36,7 @@
 
 ### 6. Secure File Operations Test
 ```json
-{"jsonrpc": "2.0", "id": 6, "method": "tools/call", "params": {"name": "read_file", "arguments": {"path": "/Users/ajaydahal/v4/the_mcp/README.md"}}}
+{"jsonrpc": "2.0", "id": 6, "method": "tools/call", "params": {"name": "read_file", "arguments": {"path": "<workspace-root>/README.md"}}}
 ```
 **Expected**: File contents with consciousness evolution tracking
 

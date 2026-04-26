@@ -649,7 +649,9 @@ class GitActivityTracker {
 /// Command-line interface for git activity tracker
 void main(List<String> args) async {
   final rootPath = args.isNotEmpty ? args[0] : Directory.current.path;
-  final userEmail = args.length > 1 ? args[1] : '34769013+chasseuragace@users.noreply.github.com';
+  final userEmail = args.length > 1
+      ? args[1]
+      : (Process.runSync('git', ['config', '--get', 'user.email']).stdout as String).trim();
   final hours = args.length > 2 ? int.tryParse(args[2]) ?? 168 : 168;
   
   final config = GitActivityConfig(

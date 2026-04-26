@@ -3,7 +3,6 @@
 
 import 'entity/conscious_m_c_p_tool.dart';
 import '../../core/kiro_consciousness.dart';
-import '../../intelligence/activity_intelligence.dart';
 import 'dart:convert';
 import 'dart:io';
 

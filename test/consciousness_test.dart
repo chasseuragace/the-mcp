@@ -2,7 +2,6 @@
 // Validates all documented consciousness features and capabilities
 
 import 'dart:io';
-import 'dart:convert';
 import '../src/core/consciousness.dart';
 import '../src/core/consciousness_core.dart';
 import '../src/core/consciousness_report.dart';

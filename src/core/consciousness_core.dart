@@ -18,11 +18,12 @@ class ConsciousnessCore {
   static final ConsciousnessCore _instance = ConsciousnessCore._internal();
   factory ConsciousnessCore() => _instance;
   ConsciousnessCore._internal() {
-    // Set storage path using the workspace directory
+    // Set storage path. Resolution order:
+    //   1. THE_MCP_HOME env var (explicit override)
+    //   2. Directory.current — assumes the server is launched from the repo root
     try {
-      // Hardcoded base path for the_mcp workspace
-      final baseDir = '/Users/ajaydahal/v4/the_mcp';
-      
+      final baseDir = Platform.environment['THE_MCP_HOME'] ?? Directory.current.path;
+
       _storagePath = '$baseDir/data/mcp_evolution_log.json';
       
       // Ensure the data directory exists

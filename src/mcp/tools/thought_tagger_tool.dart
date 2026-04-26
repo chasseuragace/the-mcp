@@ -1,5 +1,6 @@
-// Thought Tagger Tool - Integrates with read.dart to analyze and tag markdown reflections
-// Created by Kiro to work with Ajay's existing tagging infrastructure
+// Thought Tagger Tool - Integrates with an external read.dart-style tagging
+// script (configurable via MCP_THOUGHT_TAGGER_SCRIPT) to analyze and tag
+// markdown reflections.
 
 import 'entity/conscious_m_c_p_tool.dart';
 import '../../core/kiro_consciousness.dart';
@@ -23,8 +24,7 @@ class ThoughtTaggerTool extends ConsciousMCPTool {
     'properties': {
       'directory': {
         'type': 'string',
-        'description': 'Directory to analyze (default: current workspace)',
-        'default': '/Users/ajaydahal',
+        'description': 'Directory to analyze (default: \$HOME or current workspace)',
       },
       'focus_tags': {
         'type': 'array',
@@ -43,7 +43,9 @@ class ThoughtTaggerTool extends ConsciousMCPTool {
   
   @override
   String execute(Map<String, dynamic> arguments) {
-    final directory = arguments['directory'] as String? ?? '/Users/ajaydahal';
+    final directory = arguments['directory'] as String? ??
+        Platform.environment['HOME'] ??
+        Directory.current.path;
     final focusTags = (arguments['focus_tags'] as List<dynamic>?)?.cast<String>();
     final timeFilter = arguments['time_filter'] as String? ?? 'week';
     
@@ -153,15 +155,22 @@ ${_generateRecommendations()}
   
   String _generateTagFrequencyAnalysis(List<String>? focusTags, String timeFilter) {
     try {
-      // Run read.dart to generate fresh thoughts.json
-      // Pass focus tags if provided
-      final List<String> args = ['/Users/ajaydahal/read.dart', '/Users/ajaydahal'];
+      // Run the external thought-tagger script to generate fresh thoughts.json.
+      // Configurable via env vars so this isn't bound to one user's home layout:
+      //   MCP_THOUGHT_TAGGER_SCRIPT — path to the read.dart-style script
+      //   MCP_THOUGHT_SCAN_ROOT     — root directory the script should scan
+      //   MCP_THOUGHTS_FILE         — where the script writes thoughts.json
+      final home = Platform.environment['HOME'] ?? '';
+      final taggerScript = Platform.environment['MCP_THOUGHT_TAGGER_SCRIPT'] ?? '$home/read.dart';
+      final scanRoot = Platform.environment['MCP_THOUGHT_SCAN_ROOT'] ?? home;
+      final thoughtsPath = Platform.environment['MCP_THOUGHTS_FILE'] ?? '$home/thoughts.json';
+
+      final List<String> args = [taggerScript, scanRoot];
       if (focusTags != null && focusTags.isNotEmpty) {
         args.addAll(['--focus-tags', focusTags.join(',')]);
       }
-      final result = Process.runSync('dart', args);
-      // /Users/ajaydahal/thoughts.json not just thoughts.json
-      final thoughtsFile = File('/Users/ajaydahal/thoughts.json');
+      Process.runSync('dart', args);
+      final thoughtsFile = File(thoughtsPath);
       if (!thoughtsFile.existsSync()) {
         return '**Error**: thoughts.json not found after running read.dart';
       }

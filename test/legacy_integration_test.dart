@@ -3,10 +3,8 @@
 // into consciousness-aware architecture
 
 import 'dart:io';
-import 'dart:convert';
 import '../src/core/consciousness_core.dart';
 import '../src/intelligence/activity_intelligence.dart';
-import '../src/core/consciousness.dart';
 import '../src/intelligence/activity_intelligence_config.dart';
 
 void main() async {
@@ -92,8 +90,8 @@ Future<void> testLegacyExclusionLogic() async {
     extraExcludes: {'node_modules', '.git'},
   );
   
-  final intelligence = ActivityIntelligence(config);
-  
+  ActivityIntelligence(config);
+
   // Test exclusion patterns (accessing private methods through reflection would be complex,
   // so we test through behavior)
   print('  ✓ Legacy exclusion patterns integrated');

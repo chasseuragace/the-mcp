@@ -82,10 +82,6 @@ class ActivityIntelligenceConfig {
     int fileCount = 50;
     int dirCount = 50;
     int hours = 1440;
-    bool verbose = false;
-    bool summarize = false;
-    bool quick = false;
-    bool onlyUserExts = false;
     final extraExcludes = <String>[];
     final userExts = <String>{};
 
@@ -98,10 +94,6 @@ class ActivityIntelligenceConfig {
         case '-x': extraExcludes.add(_getNextArg(args, i++)); break;
         case '-e': userExts.add(_getNextArg(args, i++).toLowerCase()); break;
         case '-t': hours = int.tryParse(_getNextArg(args, i++)) ?? hours; break;
-        case '-v': verbose = true; break;
-        case '-s': summarize = true; break;
-        case '-q': quick = true; break;
-        case '-O': case '--only-exts': onlyUserExts = true; break;
       }
     }
 

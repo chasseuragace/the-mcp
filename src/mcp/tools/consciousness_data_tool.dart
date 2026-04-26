@@ -65,18 +65,19 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _generateConsciousnessData(String timeWindow) {
     try {
-      // Use absolute paths for consistency with ConsciousnessCore
-      final baseDir = '/Users/ajaydahal/v4/the_mcp';
-      
-      // Run read.dart to get fresh tag data
-      final result = Process.runSync('dart', ['/Users/ajaydahal/read.dart', '/Users/ajaydahal']);
-      
+      final baseDir = Platform.environment['THE_MCP_HOME'] ?? Directory.current.path;
+      final home = Platform.environment['HOME'] ?? '';
+      final taggerScript = Platform.environment['MCP_THOUGHT_TAGGER_SCRIPT'] ?? '$home/read.dart';
+      final scanRoot = Platform.environment['MCP_THOUGHT_SCAN_ROOT'] ?? home;
+      final thoughtsPath = Platform.environment['MCP_THOUGHTS_FILE'] ?? '$home/thoughts.json';
+
+      final result = Process.runSync('dart', [taggerScript, scanRoot]);
+
       if (result.exitCode != 0) {
-        return 'Error running read.dart: ${result.stderr}';
+        return 'Error running thought tagger script ($taggerScript): ${result.stderr}';
       }
-      
-      // Read the generated thoughts.json from home directory
-      final thoughtsFile = File('/Users/ajaydahal/thoughts.json');
+
+      final thoughtsFile = File(thoughtsPath);
       if (!thoughtsFile.existsSync()) {
         return 'Error: thoughts.json not generated';
       }
@@ -114,8 +115,7 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _analyzeConsciousnessData(String timeWindow, String outputFormat) {
     try {
-      // Use the same absolute path pattern as ConsciousnessCore
-      final baseDir = '/Users/ajaydahal/v4/the_mcp';
+      final baseDir = Platform.environment['THE_MCP_HOME'] ?? Directory.current.path;
       final consciousnessFile = File('$baseDir/consciousness_data.json');
       
       if (!consciousnessFile.existsSync()) {
@@ -140,8 +140,7 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   
   String _exportConsciousnessData(String timeWindow) {
     try {
-      // Use absolute paths for consistency
-      final baseDir = '/Users/ajaydahal/v4/the_mcp';
+      final baseDir = Platform.environment['THE_MCP_HOME'] ?? Directory.current.path;
       final consciousnessFile = File('$baseDir/consciousness_data.json');
       
       if (!consciousnessFile.existsSync()) {
@@ -294,11 +293,17 @@ This JSON file contains:
       
       // Extract project from path
       String project = 'unknown';
-      if (pathParts.contains('v4')) project = 'v4_the_mcp';
-      else if (pathParts.contains('v6')) project = 'v6_consciousness';
-      else if (pathParts.contains('portal')) project = 'agency_research';
-      else if (pathParts.contains('deployments')) project = 'deployment_system';
-      else if (pathParts.contains('code')) project = 'development_projects';
+      if (pathParts.contains('v4')) {
+        project = 'v4_the_mcp';
+      } else if (pathParts.contains('v6')) {
+        project = 'v6_consciousness';
+      } else if (pathParts.contains('portal')) {
+        project = 'agency_research';
+      } else if (pathParts.contains('deployments')) {
+        project = 'deployment_system';
+      } else if (pathParts.contains('code')) {
+        project = 'development_projects';
+      }
       
       if (!projects.containsKey(project)) {
         projects[project] = {

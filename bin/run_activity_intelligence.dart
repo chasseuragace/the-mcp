@@ -1,7 +1,7 @@
-// Standalone runner for Activity Intelligence (v4 MCP workspace)
+// Standalone runner for Activity Intelligence.
 // Usage:
 //   dart run bin/run_activity_intelligence.dart \
-//     --root /Users/ajaydahal/v4/the_mcp \
+//     --root "$PWD" \
 //     --hours 168 \
 //     --fileCount 50
 //

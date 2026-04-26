@@ -207,41 +207,8 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
       //   return 'Python';
       // }
       
-    } catch (e) {}
+    } catch (_) { /* skip on access errors */ }
     return null;
-  }
-  
-  bool _hasPythonFiles(Directory dir) {
-    try {
-      final files = dir.listSync(recursive: false, followLinks: false);
-      return files.any((entity) => 
-        entity is File && entity.path.endsWith('.py'));
-    } catch (e) {
-      return false;
-    }
-  }
-  
-  bool _hasJavaScriptFiles(Directory dir) {
-    try {
-      final files = dir.listSync(recursive: false, followLinks: false);
-      return files.any((entity) => 
-        entity is File && (entity.path.endsWith('.js') || 
-                          entity.path.endsWith('.ts') ||
-                          entity.path.endsWith('.tsx') ||
-                          entity.path.endsWith('.jsx')));
-    } catch (e) {
-      return false;
-    }
-  }
-  
-  bool _hasDartFiles(Directory dir) {
-    try {
-      final files = dir.listSync(recursive: false, followLinks: false);
-      return files.any((entity) => 
-        entity is File && entity.path.endsWith('.dart'));
-    } catch (e) {
-      return false;
-    }
   }
   
   DateTime? _getLastModifiedSync(Directory projectDir, String projectType) {
@@ -290,7 +257,7 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
               }
             }
           }
-        } catch (e) {}
+        } catch (_) { /* skip on access errors */ }
       }
       return latest;
     } catch (e) {
@@ -306,7 +273,7 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
       _walkForMarkdown(rootDir, 0, threshold, markdownFiles);
       
       markdownFiles.sort((a, b) => (b['lastModified'] as DateTime).compareTo(a['lastModified'] as DateTime));
-    } catch (e) {}
+    } catch (_) { /* skip on access errors */ }
     
     return markdownFiles.take(20).toList();
   }
@@ -334,10 +301,10 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
                 'lastModified': stat.modified,
               });
             }
-          } catch (e) {}
+          } catch (_) { /* skip on access errors */ }
         }
       }
-    } catch (e) {}
+    } catch (_) { /* skip on access errors */ }
   }
   
   bool _shouldSkipDirectory(String name) {

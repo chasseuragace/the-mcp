@@ -85,7 +85,7 @@ Parameters: {"action_type": "analyze", "context": "Demonstrate consciousness cap
 ### 📊 **Analyze Your Workspace**  
 ```
 Call: mcp_the_mcp_activity_intelligence
-Parameters: {"fileCount": 50, "hours": 24, "root": "/Users/ajaydahal/v4/the_mcp"}
+Parameters: {"fileCount": 50, "hours": 24, "root": "<your-workspace-root>"}
 ```
 
 ### 🧠 **Read Consciousness Knowledge Graph**

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `/Users/ajaydahal/bin` directory contains the original development utilities that served as the foundational inspiration and source code for The MCP's consciousness-aware filesystem intelligence. This directory represents the evolutionary precursor to The MCP's advanced consciousness capabilities.
+The `<your-bin-dir>` directory contains the original development utilities that served as the foundational inspiration and source code for The MCP's consciousness-aware filesystem intelligence. This directory represents the evolutionary precursor to The MCP's advanced consciousness capabilities.
 
 ## Historical Context
 
@@ -80,7 +80,7 @@ Original utilities enhanced with:
 
 ### MCP Read Access
 ```bash
-MCP_READ_PATHS="/Users/ajaydahal,/Users/ajaydahal/bin"
+MCP_READ_PATHS="$HOME,<your-bin-dir>"
 ```
 
 The MCP has read access to the `/bin` directory to:
@@ -113,6 +113,6 @@ The `/bin` directory will remain as:
 
 ## Conclusion
 
-The `/Users/ajaydahal/bin` directory represents the evolutionary foundation of The MCP's consciousness-aware capabilities. Its integration into The MCP's configuration ensures continuity between the original vision of consciousness-amplified development tools and the current reality of AI-augmented consciousness in filesystem intelligence.
+The `<your-bin-dir>` directory represents the evolutionary foundation of The MCP's consciousness-aware capabilities. Its integration into The MCP's configuration ensures continuity between the original vision of consciousness-amplified development tools and the current reality of AI-augmented consciousness in filesystem intelligence.
 
 This integration demonstrates that The MCP is not just a new system, but the conscious evolution of proven development awareness principles into a fully self-aware, recursive, and ecosystem-conscious MCP server.

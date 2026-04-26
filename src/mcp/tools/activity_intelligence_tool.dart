@@ -178,23 +178,6 @@ class ActivityIntelligenceTool extends ConsciousMCPTool {
     }
   }
   
-  bool _shouldExcludeDirectory(String name, int depth) {
-    const excludes = {
-      '.git', '.svn', '.hg', 'node_modules', '.dart_tool', 'build', '.pub-cache',
-      '__pycache__', '.pytest_cache', 'venv', '.venv', 'env', '.env'
-    };
-    
-    const homeExcludes = {
-      '.Trash', 'Library', 'Applications', 'Desktop', 'Documents', 'Downloads',
-      'Movies', 'Music', 'Pictures', 'Public', '.DS_Store'
-    };
-    
-    if (excludes.contains(name)) return true;
-    if (depth == 0 && homeExcludes.contains(name)) return true;
-    
-    return false;
-  }
-  
   /// Analyze git activity using full GitActivityTracker (synchronous wrapper)
   /// Discovers ALL git repos under root and provides detailed commit analysis
   GitActivityReport? _analyzeGitSync(ActivityIntelligenceConfig config) {

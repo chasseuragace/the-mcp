@@ -167,9 +167,9 @@ dart run src/main_http_server.dart
       "command": "dart",
       "args": [
         "run",
-        "/Users/ajaydahal/v4/the_mcp/src/main.dart",
-        "--read-paths", "/Users/ajaydahal",
-        "--write-paths", "/Users/ajaydahal/v4/the_mcp/reports"
+        "<path-to-the-mcp>/src/main.dart",
+        "--read-paths", "$HOME/code",
+        "--write-paths", "<path-to-the-mcp>/reports"
       ]
     }
   }

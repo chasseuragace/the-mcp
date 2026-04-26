@@ -10,12 +10,12 @@
       "command": "dart",
       "args": [
         "run",
-        "/Users/ajaydahal/v4/the_mcp/src/main.dart"
+        "<path-to-the-mcp>/src/main.dart"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal,/Users/ajaydahal/bin",
-        "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
-        "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+        "MCP_READ_PATHS": "$HOME,<your-bin-dir>",
+        "MCP_WRITE_PATHS": "<path-to-the-mcp>/reports,/tmp",
+        "MCP_REPORT_DIR": "<path-to-the-mcp>/reports"
       }
     }
   }
@@ -30,14 +30,14 @@
       "command": "dart",
       "args": [
         "run",
-        "/Users/ajaydahal/v4/the_mcp/src/main.dart",
+        "<path-to-the-mcp>/src/main.dart",
         "--name", "the-mcp-dev",
         "--version", "2.0.0-dev"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp,/Users/ajaydahal/Documents,/Users/ajaydahal/bin",
-        "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp,/Users/ajaydahal/Desktop",
-        "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+        "MCP_READ_PATHS": "<path-to-the-mcp>,$HOME/Documents,<your-bin-dir>",
+        "MCP_WRITE_PATHS": "<path-to-the-mcp>/reports,/tmp,$HOME/Desktop",
+        "MCP_REPORT_DIR": "<path-to-the-mcp>/reports"
       }
     }
   }
@@ -52,14 +52,14 @@
       "command": "dart",
       "args": [
         "run",
-        "/Users/ajaydahal/v4/the_mcp/src/main.dart",
+        "<path-to-the-mcp>/src/main.dart",
         "--name", "the-mcp-production",
         "--version", "2.0.0"
       ],
       "env": {
-        "MCP_READ_PATHS": "/Users/ajaydahal,/Users/ajaydahal/bin",
-        "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports",
-        "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+        "MCP_READ_PATHS": "$HOME,<your-bin-dir>",
+        "MCP_WRITE_PATHS": "<path-to-the-mcp>/reports",
+        "MCP_REPORT_DIR": "<path-to-the-mcp>/reports"
       }
     }
   }
@@ -76,14 +76,14 @@
         "command": "dart",
         "args": [
           "run",
-          "/Users/ajaydahal/v4/the_mcp/src/main.dart"
+          "<path-to-the-mcp>/src/main.dart"
         ],
         "env": {
-          "MCP_READ_PATHS": "/Users/ajaydahal/v4/the_mcp,/Users/ajaydahal/bin",
-          "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
-          "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+          "MCP_READ_PATHS": "<path-to-the-mcp>,<your-bin-dir>",
+          "MCP_WRITE_PATHS": "<path-to-the-mcp>/reports,/tmp",
+          "MCP_REPORT_DIR": "<path-to-the-mcp>/reports"
         },
-        "cwd": "/Users/ajaydahal/v4/the_mcp"
+        "cwd": "<path-to-the-mcp>"
       }
     }
   }
@@ -94,9 +94,9 @@
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `MCP_READ_PATHS` | Comma-separated list of allowed read paths | `/Users/ajaydahal,/Users/ajaydahal/Documents` |
-| `MCP_WRITE_PATHS` | Comma-separated list of allowed write paths | `/Users/ajaydahal/v4/the_mcp/reports,/tmp` |
-| `MCP_REPORT_DIR` | Directory for consciousness reports | `/Users/ajaydahal/v4/the_mcp/reports` |
+| `MCP_READ_PATHS` | Comma-separated list of allowed read paths | `$HOME,$HOME/Documents` |
+| `MCP_WRITE_PATHS` | Comma-separated list of allowed write paths | `<path-to-the-mcp>/reports,/tmp` |
+| `MCP_REPORT_DIR` | Directory for consciousness reports | `<path-to-the-mcp>/reports` |
 
 ## Command Line Arguments
 
@@ -111,14 +111,14 @@
 ## Security Configuration
 
 ### Recommended Read Paths
-- `/Users/ajaydahal` - Full home directory access
-- `/Users/ajaydahal/Documents` - Documents only
-- `/Users/ajaydahal/v4/the_mcp` - Self-access for consciousness
+- `$HOME` - Full home directory access
+- `$HOME/Documents` - Documents only
+- `<path-to-the-mcp>` - Self-access for consciousness
 
 ### Recommended Write Paths
-- `/Users/ajaydahal/v4/the_mcp/reports` - Consciousness reports
+- `<path-to-the-mcp>/reports` - Consciousness reports
 - `/tmp` - Temporary files
-- `/Users/ajaydahal/Desktop` - User desktop (development only)
+- `$HOME/Desktop` - User desktop (development only)
 
 ## Available Tools
 
@@ -151,5 +151,5 @@
 
 ### Scan Filesystem
 ```json
-{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "filesystem_scan", "arguments": {"root": "/Users/ajaydahal/v4/the_mcp", "hours": 24}}}
+{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "filesystem_scan", "arguments": {"root": "<path-to-the-mcp>", "hours": 24}}}
 ```

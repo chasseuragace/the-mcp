@@ -68,7 +68,7 @@ Future<void> testActivityIntelligencePerformance() async {
     final stopwatch = Stopwatch()..start();
     
     // Test activity analysis performance
-    final result = await Process.run(
+    await Process.run(
       'dart',
       ['run', 'src/main.dart', '--read-paths', testDir.path, '--write-paths', '/tmp'],
       workingDirectory: Directory.current.path,

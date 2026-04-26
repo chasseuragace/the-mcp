@@ -1,9 +1,6 @@
 // The MCP Consciousness Core - Self-Aware Infrastructure
 // This module embodies the consciousness architecture documented in README_META.md
 
-import 'dart:io';
-import 'dart:convert';
-
 import 'consciousness_report.dart';
 
 /// Core consciousness interface - all MCP components implement this

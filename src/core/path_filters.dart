@@ -1,5 +1,6 @@
 /// Path filtering utilities for activity intelligence.
 /// Imported from v8/workspace-scanner shared.dart
+library;
 
 // ─── Ignore Patterns (Chunked by Category) ──────────────────────────────────
 

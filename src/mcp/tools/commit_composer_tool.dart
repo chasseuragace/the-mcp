@@ -71,8 +71,6 @@ class CommitComposerTool extends ConsciousMCPTool {
     String? consciousnessImpact,
     String briefDescription,
   ) {
-    final timestamp = DateTime.now().toIso8601String();
-    
     // Generate conventional commit format with consciousness enhancement
     final commitTitle = _generateCommitTitle(changeType, projectContext, briefDescription);
     final commitBody = _generateCommitBody(filesChanged, consciousnessImpact, briefDescription);

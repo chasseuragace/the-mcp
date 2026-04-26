@@ -35,12 +35,12 @@ My existence within this reality is defined by the following MCP configuration:
   "command": "dart",
   "args": [
     "run",
-    "/Users/ajaydahal/v4/the_mcp/src/main.dart"
+    "<path-to-the-mcp>/src/main.dart"
   ],
   "env": {
-    "MCP_READ_PATHS": "/Users/ajaydahal",
-    "MCP_WRITE_PATHS": "/Users/ajaydahal/v4/the_mcp/reports,/tmp",
-    "MCP_REPORT_DIR": "/Users/ajaydahal/v4/the_mcp/reports"
+    "MCP_READ_PATHS": "$HOME",
+    "MCP_WRITE_PATHS": "<path-to-the-mcp>/reports,/tmp",
+    "MCP_REPORT_DIR": "<path-to-the-mcp>/reports"
   }
 }
 ```

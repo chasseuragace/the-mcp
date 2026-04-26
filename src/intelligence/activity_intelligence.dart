@@ -248,41 +248,6 @@ class ActivityIntelligence implements ConsciousComponent {
     return path.split(Platform.pathSeparator).any((segment) => segment.length > 100);
   }
   
-  bool _matchesExclude(String path, String name, Set<String> excludes) {
-    return excludes.any((pattern) {
-      if (pattern.startsWith('/')) {
-        return path.startsWith(pattern);
-      } else if (pattern.contains('*')) {
-        final regex = RegExp(pattern.replaceAll('*', '.*'));
-        return regex.hasMatch(name);
-      } else {
-        return name == pattern;
-      }
-    });
-  }
-  
-  Set<String> _getTopExcludes() {
-    final topExcludes = <String>{};
-    if (_isHome(config.root)) {
-      topExcludes.addAll(_homeDefaultExcludes);
-    }
-    return topExcludes;
-  }
-  
-  bool _isHome(String path) {
-    final home = Platform.environment['HOME'];
-    return home != null && path == home;
-  }
-  
-  static const _homeDefaultExcludes = {
-    '.Trash', 'Library', 'Applications', 'Desktop', 'Documents', 'Downloads',
-    'Movies', 'Music', 'Pictures', 'Public', '.DS_Store'
-  };
-  
-  static const _recursiveExcludes = {
-    '.git', '.svn', '.hg', 'node_modules', '.dart_tool', 'build', '.pub-cache',
-    '__pycache__', '.pytest_cache', 'venv', '.venv', 'env', '.env'
-  };
   
   List<DevelopmentPattern> _detectDevelopmentPatterns(
     List<ActivityFile> files, 

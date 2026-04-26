@@ -24,13 +24,11 @@ class GitActivityTool extends ConsciousMCPTool {
     'properties': {
       'root_path': {
         'type': 'string',
-        'description': 'Root directory to search for git repositories',
-        'default': '/Users/ajaydahal',
+        'description': 'Root directory to search for git repositories (default: \$HOME)',
       },
       'user_email': {
         'type': 'string',
-        'description': 'Git user email to filter commits by',
-        'default': '34769013+chasseuragace@users.noreply.github.com',
+        'description': 'Git user email to filter commits by (default: git config user.email)',
       },
       'time_window': {
         'type': 'string',
@@ -60,8 +58,12 @@ class GitActivityTool extends ConsciousMCPTool {
   
   @override
   String execute(Map<String, dynamic> arguments) {
-    final rootPath = arguments['root_path'] as String? ?? '/Users/ajaydahal';
-    final userEmail = arguments['user_email'] as String? ?? '34769013+chasseuragace@users.noreply.github.com';
+    final rootPath = arguments['root_path'] as String? ??
+        Platform.environment['HOME'] ??
+        Directory.current.path;
+    final userEmail = arguments['user_email'] as String? ??
+        _detectGitUserEmail() ??
+        '';
     final timeWindow = arguments['time_window'] as String? ?? 'week';
     final maxRepos = arguments['max_repos'] as int? ?? 10;
     final useCache = arguments['use_cache'] as bool? ?? true;
@@ -72,6 +74,17 @@ class GitActivityTool extends ConsciousMCPTool {
     return _analyzeGitActivity(rootPath, userEmail, timeWindow, maxRepos, useCache, commitDetailLevel);
   }
   
+  String? _detectGitUserEmail() {
+    try {
+      final result = Process.runSync('git', ['config', '--get', 'user.email']);
+      if (result.exitCode == 0) {
+        final email = (result.stdout as String).trim();
+        if (email.isNotEmpty) return email;
+      }
+    } catch (_) {}
+    return null;
+  }
+
   String _analyzeGitActivity(String rootPath, String userEmail, String timeWindow, int maxRepos, bool useCache, String commitDetailLevel) {
     try {
       // Convert time window to hours
