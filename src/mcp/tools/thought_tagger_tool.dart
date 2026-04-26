@@ -4,6 +4,7 @@
 
 import 'entity/conscious_m_c_p_tool.dart';
 import '../../core/kiro_consciousness.dart';
+import '../../core/platform_paths.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -43,9 +44,7 @@ class ThoughtTaggerTool extends ConsciousMCPTool {
   
   @override
   String execute(Map<String, dynamic> arguments) {
-    final directory = arguments['directory'] as String? ??
-        Platform.environment['HOME'] ??
-        Directory.current.path;
+    final directory = arguments['directory'] as String? ?? userHomeOrCwd();
     final focusTags = (arguments['focus_tags'] as List<dynamic>?)?.cast<String>();
     final timeFilter = arguments['time_filter'] as String? ?? 'week';
     
@@ -160,7 +159,7 @@ ${_generateRecommendations()}
       //   MCP_THOUGHT_TAGGER_SCRIPT — path to the read.dart-style script
       //   MCP_THOUGHT_SCAN_ROOT     — root directory the script should scan
       //   MCP_THOUGHTS_FILE         — where the script writes thoughts.json
-      final home = Platform.environment['HOME'] ?? '';
+      final home = userHomeOrCwd();
       final taggerScript = Platform.environment['MCP_THOUGHT_TAGGER_SCRIPT'] ?? '$home/read.dart';
       final scanRoot = Platform.environment['MCP_THOUGHT_SCAN_ROOT'] ?? home;
       final thoughtsPath = Platform.environment['MCP_THOUGHTS_FILE'] ?? '$home/thoughts.json';

@@ -2,6 +2,7 @@
 // Self-aware MCP server with consciousness integration
 
 import 'dart:io';
+import 'core/platform_paths.dart';
 import 'mcp/conscious_server.dart';
 
 /// Configuration from environment or command line
@@ -21,8 +22,8 @@ class MCPConfig {
   });
   
   factory MCPConfig.fromEnvironment() {
-    final readPaths = Platform.environment['MCP_READ_PATHS']?.split(',') ?? [Platform.environment['HOME'] ?? '/tmp'];
-    final writePaths = Platform.environment['MCP_WRITE_PATHS']?.split(',') ?? ['/tmp'];
+    final readPaths = Platform.environment['MCP_READ_PATHS']?.split(',') ?? [userHomeOrCwd()];
+    final writePaths = Platform.environment['MCP_WRITE_PATHS']?.split(',') ?? [tempDir()];
     final reportDir = Platform.environment['MCP_REPORT_DIR'];
     
     return MCPConfig(
@@ -37,8 +38,8 @@ class MCPConfig {
   factory MCPConfig.fromArgs(List<String> args) {
     String name = 'the-mcp-conscious';
     String version = '2.0.0-consciousness';
-    List<String> readPaths = [Platform.environment['HOME'] ?? '/tmp'];
-    List<String> writePaths = ['/tmp'];
+    List<String> readPaths = [userHomeOrCwd()];
+    List<String> writePaths = [tempDir()];
     String? reportDir;
     
     for (int i = 0; i < args.length; i++) {

@@ -3,6 +3,7 @@
 
 import 'entity/conscious_m_c_p_tool.dart';
 import '../../core/kiro_consciousness.dart';
+import '../../core/platform_paths.dart';
 import '../../intelligence/git_activity_tracker.dart';
 import 'dart:convert';
 import 'dart:io';
@@ -58,9 +59,7 @@ class GitActivityTool extends ConsciousMCPTool {
   
   @override
   String execute(Map<String, dynamic> arguments) {
-    final rootPath = arguments['root_path'] as String? ??
-        Platform.environment['HOME'] ??
-        Directory.current.path;
+    final rootPath = arguments['root_path'] as String? ?? userHomeOrCwd();
     final userEmail = arguments['user_email'] as String? ??
         _detectGitUserEmail() ??
         '';

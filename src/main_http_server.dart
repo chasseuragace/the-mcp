@@ -4,6 +4,7 @@
 import 'dart:io';
 import 'dart:convert';
 import 'core/consciousness_core.dart';
+import 'core/platform_paths.dart';
 import 'mcp/conscious_server.dart';
 
 /// HTTP Server Configuration
@@ -29,9 +30,9 @@ class HTTPServerConfig {
   factory HTTPServerConfig.fromEnvironment() {
     final host = Platform.environment['HTTP_HOST'] ?? '0.0.0.0';
     final port = int.tryParse(Platform.environment['HTTP_PORT'] ?? '8050') ?? 8080;
-    final readPaths = Platform.environment['MCP_READ_PATHS']?.split(',') ?? 
-        [Platform.environment['HOME'] ??'/', '/Volumes'];
-    final writePaths = Platform.environment['MCP_WRITE_PATHS']?.split(',') ?? ['/tmp'];
+    final readPaths = Platform.environment['MCP_READ_PATHS']?.split(',') ??
+        [userHomeOrCwd(), if (Platform.isMacOS) '/Volumes'];
+    final writePaths = Platform.environment['MCP_WRITE_PATHS']?.split(',') ?? [tempDir()];
     final reportDir = Platform.environment['MCP_REPORT_DIR'];
     
     return HTTPServerConfig(
@@ -50,8 +51,8 @@ class HTTPServerConfig {
     int port = 8080;
     String name = 'the-mcp-conscious-http';
     String version = '2.0.0-consciousness';
-    List<String> readPaths = [Platform.environment['HOME'] ?? '/tmp'];
-    List<String> writePaths = ['/tmp'];
+    List<String> readPaths = [userHomeOrCwd()];
+    List<String> writePaths = [tempDir()];
     String? reportDir;
     
     for (int i = 0; i < args.length; i++) {

@@ -2,6 +2,7 @@
 // Refactored from recent_activity.dart with consciousness integration
 
 import 'dart:io';
+import '../core/platform_paths.dart';
 
 /// Consciousness-aware activity analysis configuration
 class ActivityIntelligenceConfig {
@@ -29,7 +30,7 @@ class ActivityIntelligenceConfig {
 
   /// Create config from legacy command-line arguments (backward compatibility)
   factory ActivityIntelligenceConfig.fromLegacyArgs(List<String> args) {
-    String root = Platform.environment['HOME'] ?? '/';
+    String root = userHomeOrCwd();
     int hours = 24;
     int fileCount = 20;
     int dirCount = 10;
@@ -78,7 +79,7 @@ class ActivityIntelligenceConfig {
   }
 
   factory ActivityIntelligenceConfig.fromArgs(List<String> args) {
-    String root = Platform.environment['HOME'] ?? Directory.current.path;
+    String root = userHomeOrCwd();
     int fileCount = 50;
     int dirCount = 50;
     int hours = 1440;

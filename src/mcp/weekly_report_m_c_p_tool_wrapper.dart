@@ -2,6 +2,7 @@
 // Refactored from filesystem_mcp_server.dart with consciousness integration
 
 import 'dart:io';
+import '../core/platform_paths.dart';
 import 'tools/entity/conscious_m_c_p_tool.dart';
 
 /// Wrapper to integrate WeeklyReportTool with ConsciousMCPTool interface
@@ -67,7 +68,7 @@ class WeeklyReportMCPToolWrapper extends ConsciousMCPTool {
   String _executeSync(String? root, int fileCount, int hours) {
     // Use synchronous filesystem analysis similar to ActivityIntelligenceTool
     try {
-      final rootPath = root ?? Platform.environment['HOME'] ?? Directory.current.path;
+      final rootPath = root ?? userHomeOrCwd();
       final startTime = DateTime.now();
       final threshold = DateTime.now().subtract(Duration(hours: hours));
       

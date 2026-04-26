@@ -3,6 +3,7 @@
 
 import 'entity/conscious_m_c_p_tool.dart';
 import '../../core/kiro_consciousness.dart';
+import '../../core/platform_paths.dart';
 import 'dart:convert';
 import 'dart:io';
 
@@ -66,7 +67,7 @@ class ConsciousnessDataTool extends ConsciousMCPTool {
   String _generateConsciousnessData(String timeWindow) {
     try {
       final baseDir = Platform.environment['THE_MCP_HOME'] ?? Directory.current.path;
-      final home = Platform.environment['HOME'] ?? '';
+      final home = userHomeOrCwd();
       final taggerScript = Platform.environment['MCP_THOUGHT_TAGGER_SCRIPT'] ?? '$home/read.dart';
       final scanRoot = Platform.environment['MCP_THOUGHT_SCAN_ROOT'] ?? home;
       final thoughtsPath = Platform.environment['MCP_THOUGHTS_FILE'] ?? '$home/thoughts.json';

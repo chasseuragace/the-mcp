@@ -26,4 +26,4 @@ jobs:
         run: dart analyze --fatal-infos --fatal-warnings
 
       - name: Run tests
-        run: dart test test/consciousness_test.dart test/main_http_server_test.dart test/test_evolution_persistence.dart
+        run: dart test test/platform_paths_test.dart test/consciousness_test.dart test/main_http_server_test.dart test/test_evolution_persistence.dart
